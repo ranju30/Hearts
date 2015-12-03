@@ -1,11 +1,12 @@
 {
   "name": "hearts",
   "version": "1.0.0",
-  "description": "------------------------------------------------------------------------------------------------------------",
+  "description": "hearts",
   "main": "login.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "test": "mocha --recursive",
+    "min" : "mocha -R min --recursive",
+    "watch": "mocha -R min --watch --recursive"
   },
   "repository": {
     "type": "git",
