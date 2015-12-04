@@ -1,6 +1,6 @@
 var expect = require('chai').expect;
-var playerLib = require('../public/javaScript/player.js').lib;
-var masterLib = require('../public/javaScript/master.js').master;
+var playerLib = require('../lib/player.js').lib;
+var masterLib = require('../lib/master.js').master;
 
 describe('shuffle',function(){
 	it('should have 52 cards',function(){

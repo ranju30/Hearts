@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var playerLib = require('../public/javaScript/player.js').lib;
+var playerLib = require('../lib/player.js').lib;
 
 describe('Player',function(){
 	var player = new playerLib.Player('anjaly');

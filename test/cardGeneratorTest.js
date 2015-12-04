@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var cardLib = require('../public/javaScript/cardGenerator.js').lib;
+var cardLib = require('../lib/cardGenerator.js').lib;
 
 
 describe('cardGenerator',function(){
