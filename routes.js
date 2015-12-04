@@ -1,5 +1,7 @@
 var fs = require('fs');
 var ld = require('lodash');
+var cookieReader = require('./lib/cookieReader');
+var bodyReader = require('./lib/bodyReader');
 var querystring = require('querystring');
 var names = require('./name.js');
 
@@ -37,7 +39,21 @@ var joinPlayer = function(req, res){
 var serveIndex = function(req, res, next){
 	req.url = '/login.html';
 	next();
+
 };
+
+var readCookies = function(req, res, next){
+	cookieReader.read(req);
+	console.log('cookies',req.Cookies);
+	next();
+};
+
+var readBody = function(req, res, next){
+	bodyReader.read(req);
+	console.log('body',req.Body);
+	next();
+}
+
 var serveStaticFile = function(req, res, next){
 	var filePath = './public' + req.url;
 	fs.readFile(filePath, function(err, data){
@@ -53,10 +69,13 @@ var serveStaticFile = function(req, res, next){
 };
 
 exports.post_handlers = [
-	{path: '^/$', handler: joinPlayer},
+	{path: '', handler: readCookies},
+	{path: '', handler: readBody},
+	{path: '^/login$', handler: joinPlayer},
 	{path: '', handler: method_not_allowed}
 ];
 exports.get_handlers = [
+	{path: '', handler: readCookies},
 	{path: '^/$', handler: serveIndex},
 	{path: '', handler: serveStaticFile},
 	{path: '', handler: fileNotFound}
