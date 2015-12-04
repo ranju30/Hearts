@@ -24,8 +24,8 @@ var joinPlayer = function(req, res){
     	});
 	req.on('end',function(){
 		
-		res.writeHead(301,{
-    		'Location':'/public/html/game.html',
+		res.writeHead(302,{
+    		'Location':'/game.html',
     		'Content-Type':'text/html',
     	});
 		var entry = querystring.parse(data);
@@ -35,11 +35,11 @@ var joinPlayer = function(req, res){
 };
 
 var serveIndex = function(req, res, next){
-	req.url = '/public/html/login.html';
+	req.url = '/login.html';
 	next();
 };
 var serveStaticFile = function(req, res, next){
-	var filePath = '.' + req.url;
+	var filePath = './public' + req.url;
 	fs.readFile(filePath, function(err, data){
 		if(data){
 			res.statusCode = 200;
