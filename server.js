@@ -30,7 +30,7 @@ var handle_all_get = function(req, res){
 };
 
 var requestHandler = function(req, res) {
-	console.log(req.url);
+	console.log(req.method,req.url);
 	if (req.method=='GET') {
 		handle_all_get(req,res);
 	}

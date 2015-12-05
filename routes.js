@@ -3,7 +3,6 @@ var ld = require('lodash');
 var cookieReader = require('./lib/cookieReader');
 var bodyReader = require('./lib/bodyReader');
 var querystring = require('querystring');
-var names = require('./name.js');
 
 var method_not_allowed = function(req, res){
 	res.statusCode = 405;
@@ -15,44 +14,26 @@ var fileNotFound = function(req, res){
 	res.end('Not Found');
 };
 
-var getNames = function(req,res){
-	res.end(JSON.stringify(names.getAll()));
+var redirectTo = function(res,url){
+	res.writeHead(302,{'Location':url});
+	res.end();
 };
-
-var joinPlayer = function(req, res){
-	var data='';
-	req.on('data',function(chunk){
-    		data+=new Buffer(chunk, 'base64').toString('ascii');
-    	});
-	req.on('end',function(){
-		
-		res.writeHead(302,{
-    		'Location':'/game.html',
-    		'Content-Type':'text/html',
-    	});
-		var entry = querystring.parse(data);
-		names.add(entry);
-		getNames(req,res);
-	});
-};
-
-var serveIndex = function(req, res, next){
-	req.url = '/login.html';
-	next();
-
-};
-
-var readCookies = function(req, res, next){
-	cookieReader.read(req);
-	console.log('cookies',req.Cookies);
-	next();
-};
-
-var readBody = function(req, res, next){
-	bodyReader.read(req);
+var playerLogin = function(req, res){
 	console.log('body',req.Body);
-	next();
-}
+	res.setHeader("Set-Cookie", ["userName="+req.Body.userName]);
+	redirectTo(res,'game.html');	
+};
+var playerLogout = function(req, res){
+	res.setHeader("Set-Cookie", []);
+	redirectTo(res,'login.html');	
+};
+
+var serveIndex = function(req, res){
+	if(req.user)
+		redirectTo(res,'game.html');
+	else
+		redirectTo(res,'login.html');
+};
 
 var serveStaticFile = function(req, res, next){
 	var filePath = './public' + req.url;
@@ -68,15 +49,24 @@ var serveStaticFile = function(req, res, next){
 	});
 };
 
+var loadUser = function(req,res,next){
+	var name = req.Cookies.userName;
+	req.user = name?{name:name}:null;
+	next();
+};
+
 exports.post_handlers = [
-	{path: '', handler: readCookies},
-	{path: '', handler: readBody},
-	{path: '^/login$', handler: joinPlayer},
+	{path: '', handler: cookieReader.read},
+	{path: '', handler: loadUser},
+	{path: '', handler: bodyReader.read},
+	{path: '^/login$', handler: playerLogin},
 	{path: '', handler: method_not_allowed}
 ];
 exports.get_handlers = [
-	{path: '', handler: readCookies},
+	{path: '', handler: cookieReader.read},
+	{path: '', handler: loadUser},
 	{path: '^/$', handler: serveIndex},
+	{path: '^/logout$', handler: playerLogout},
 	{path: '', handler: serveStaticFile},
 	{path: '', handler: fileNotFound}
 ];

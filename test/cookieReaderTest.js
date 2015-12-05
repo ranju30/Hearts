@@ -1,20 +1,32 @@
 var assert = require('chai').assert;
 var reader = require('../lib/cookieReader');
 describe('cookieReader',function(){
-	it('reads a cookie when present in the request header',function(){
+	it('reads a cookie when present in the request header',function(done){
 		var req = {headers:{cookie:'userName=Ranju'}};
-		reader.read(req);
-		assert.deepEqual({userName:'Ranju'},req.Cookies);
+		var res;
+		var next = function(){
+			assert.deepEqual({userName:'Ranju'},req.Cookies);
+			done();
+		};
+		reader.read(req,res,next);		
 	}),
-	it('reads two cookies when present in the request header',function(){
+	it('reads two cookies when present in the request header',function(done){
 		var req = {headers:{cookie:'userName=Ranju ;message=Hello'}};
-		reader.read(req);		
-		assert.deepEqual({userName:'Ranju',message:'Hello'},req.Cookies);
+		var res;
+		var next = function(){
+			assert.deepEqual({userName:'Ranju',message:'Hello'},req.Cookies);
+			done();
+		};
+		reader.read(req,res,next);
 	}),
-	it('reads no cookies when absent in the request header',function(){
+	it('reads no cookies when absent in the request header',function(done){
 		var req = {headers:{}};
-		reader.read(req);		
-		assert.deepEqual({},req.Cookies);
+		var res;
+		var next = function(){
+			assert.deepEqual({},req.Cookies);
+			done();
+		};
+		reader.read(req,res,next);	
 	})
 
 })
