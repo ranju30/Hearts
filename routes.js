@@ -84,7 +84,7 @@ var serveStaticFile = function(req, res, next){
 
 var loadUser = function(req,res,next){
 	var name = req.Cookies.userName;
-	req.User = name?{name:name}:null;
+	req.User = setup && setup.exists(name) && {name:name};
 	next();
 };
 

@@ -52,5 +52,16 @@ describe('gameSetup',function(){
 			setup.leave('player2');
 			assert.deepEqual(['player1'],setup.listPlayers());
 		})
+	}),
+	describe('exists',function(){
+		it('tells no when absent',function(){
+			var setup = new GameSetup();
+			assert.notOk(setup.exists('player1'));
+		}),
+		it('tells yes when present',function(){
+			var setup = new GameSetup();
+			setup.join('player1');
+			assert.ok(setup.exists('player1'));
+		})
 	})
 });
