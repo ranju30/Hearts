@@ -4,6 +4,8 @@ var ld = require('lodash');
 var cookieReader = require('./lib/cookieReader');
 var bodyReader = require('./lib/bodyReader');
 var GameSetup = require('./lib/gameSetup');
+var Game = require('./lib/game');
+var Player = require('./lib/player');
 var setup = new GameSetup();
 var game;
 
@@ -21,8 +23,7 @@ var redirectTo = function(res,url){
 	res.writeHead(302,{'Location':url});
 	res.end();
 };
-var Game = function(){};
-//TODO: if server restarts, setup does not have player, but browser remembers cookie
+
 var playerLogin = function(req, res){
 	var name = req.Body.userName;
 	if(!setup){
@@ -33,7 +34,8 @@ var playerLogin = function(req, res){
 	res.setHeader("Set-Cookie", ["userName="+name]);
 	setup.join(name);
 	if(setup.isReady()){
-		game = new Game(setup.listPlayers());
+		var players = setup.listPlayers().map(function(name){return new Player(name)});
+		game = new Game(players);
 		setup = undefined;
 	}
 	redirectTo(res,'waiting.html');	
@@ -84,7 +86,8 @@ var serveStaticFile = function(req, res, next){
 
 var loadUser = function(req,res,next){
 	var name = req.Cookies.userName;
-	req.User = setup && setup.exists(name) && {name:name};
+	var user = {name:name};
+	req.User = (setup && setup.exists(name) )||( game && game.exists(name)) && user;
 	next();
 };
 

@@ -1,9 +1,6 @@
-var expect = require('chai').expect;
-var playerLib = require('../lib/player.js').lib;
+var assert = require('chai').assert;
+var Player = require('../lib/player.js');
 
 describe('Player',function(){
-	var player = new playerLib.Player('anjaly');
-	it('should have properties',function(){
-		expect(player).to.have.all.keys('playerID');
-	});
+	
 });
