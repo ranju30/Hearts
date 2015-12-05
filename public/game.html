@@ -3,8 +3,48 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Hearts</title>
+	<link rel="stylesheet" href="stylesheets/game.css">
 </head>
 <body>
-	
+<table class="board">
+	<tr>
+		<td></td>
+		<td></td>
+		<td><div class="oppositePlayer">Opposite</div></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td><div class="leftPlayer">Left</div></td>
+		<td></td>
+		<td>
+			<div class="playedCards">
+				<div class="card1">1</div>
+				<div class="card2">2</div>
+				<div class="card3">3</div>
+				<div class="card4">4</div>
+			</div>
+		</td>
+		<td></td>
+		<td><div class="rightPlayer">Right</div></td>
+	</tr>
+	<tr>
+		<td><div class="action">pass</div></td>
+		<td></td>
+		<td><div class="status">status</div></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="5"><div class="playerSelf">Self</div></td>
+	</tr>
+</table>
 </body>
 </html>
