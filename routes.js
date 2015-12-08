@@ -5,6 +5,7 @@ var cookieReader = require('./lib/cookieReader');
 var bodyReader = require('./lib/bodyReader');
 var GameSetup = require('./lib/gameSetup');
 var Game = require('./lib/game');
+var Pack = require('./lib/Pack');
 var Player = require('./lib/player');
 var setup = new GameSetup();
 var game;
@@ -36,6 +37,7 @@ var playerLogin = function(req, res){
 	if(setup.isReady()){
 		var players = setup.listPlayers().map(function(name){return new Player(name)});
 		game = new Game(players);
+		game.deal(new Pack());
 		setup = undefined;
 	}
 	redirectTo(res,'waiting.html');	
@@ -50,8 +52,13 @@ var getGameSetupStatus = function(req,res){
 	
 	res.end(JSON.stringify(result));
 };
+
+var getGameStatus = function(req,res){
+	res.end(JSON.stringify(game.getStatus(req.User.name)));
+};
+
 var playerLogout = function(req, res){
-	if(req.User)
+	if(req.User && setup)
 		setup.leave(req.User.name);
 	redirectTo(res,'login.html');	
 };
@@ -62,12 +69,19 @@ var serveIndex = function(req, res){
 	else
 		redirectTo(res,'login.html');
 };
-
+//TODO: name should not be empty
 var ensureLoggedIn = function(req,res,next){
 	if(req.User)
-		next();
+			next();
 	else
 		redirectTo(res,'login.html');
+};
+
+var ensureGameOn = function(req, res, next){
+	if(game)
+		next();
+	else
+		redirectTo(res,'waiting.html');
 };
 
 var serveStaticFile = function(req, res, next){
@@ -103,8 +117,13 @@ exports.get_handlers = [
 	{path: '', handler: loadUser},
 	{path: '^/$', handler: serveIndex},
 	{path: '^/logout$', handler: playerLogout},
+	{path: '^/waiting.html$', handler: ensureLoggedIn},
 	{path: '^/game.html$', handler: ensureLoggedIn},
+	{path: '^/game.html$', handler: ensureGameOn},
 	{path: '^/gameSetupStatus$', handler: getGameSetupStatus},
+	{path: '^/gameStatus$', handler: ensureLoggedIn},
+	{path: '^/gameStatus$', handler: ensureGameOn},
+	{path: '^/gameStatus$', handler: getGameStatus},
 	{path: '', handler: serveStaticFile},
 	{path: '', handler: fileNotFound}
 ];

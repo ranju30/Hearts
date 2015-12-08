@@ -6,11 +6,20 @@
 	<link rel="stylesheet" href="stylesheets/game.css">
 </head>
 <body>
+<script type="text/javascript" src="javascript/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="javascript/handlebars.min-v4.0.5.js"></script>
+<script type="text/javascript" src="javascript/game.js"></script>
+
 <table class="board">
 	<tr>
 		<td></td>
 		<td></td>
-		<td><div class="oppositePlayer">Opposite</div></td>
+		<td>
+			<div class="oppositePlayer">
+				<div class="name"></div>
+				<div class="points"></div>
+			</div>
+		</td>
 		<td></td>
 		<td></td>
 	</tr>
@@ -22,7 +31,8 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td><div class="leftPlayer">Left</div></td>
+		<td><div class="leftPlayer"><div class="name"></div>
+				<div class="points"></div></div></td>
 		<td></td>
 		<td>
 			<div class="playedCards">
@@ -33,7 +43,8 @@
 			</div>
 		</td>
 		<td></td>
-		<td><div class="rightPlayer">Right</div></td>
+		<td><div class="rightPlayer"><div class="name"></div>
+				<div class="points"></div></div></td>
 	</tr>
 	<tr>
 		<td><div class="action">pass</div></td>
@@ -43,7 +54,11 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td colspan="5"><div class="playerSelf">Self</div></td>
+		<td colspan="5"><div class="playerSelf">
+			<div class="name"></div>
+			<table><tr class="hand"></tr></table>
+			<div class="points"></div>
+		</div></td>
 	</tr>
 </table>
 </body>
