@@ -8,6 +8,12 @@ var toCardHTML = function(card){
 var generateHand = function(hand){
 	return hand.map(toCardHTML).join('\r\n');
 };
+var toggleSelection = function(){
+	$(this).toggleClass('select');
+};
+var bindEvents = function(){
+	$('.card').click(toggleSelection);
+};
 var updateBoard = function(data){
 	console.log(data);
 	var getRelativePlayer = function(step){
@@ -19,12 +25,13 @@ var updateBoard = function(data){
 	$('.oppositePlayer .name').html(getRelativePlayer(2));
 	$('.rightPlayer .name').html(getRelativePlayer(3));
 	$('.playerSelf .hand').html(generateHand(data.hand));
+	bindEvents();
 };
 var checkGameStatus = function(){
 	$.getJSON('gameStatus',updateBoard)
 };
 var onPageReady = function(){
-	setInterval(checkGameStatus,5000);
+	setTimeout(checkGameStatus,5000);
 };
 
 $(document).ready(onPageReady);

@@ -21,3 +21,6 @@ td {
 .diamond,.heart {
 	color: red;
 }
+.select {
+	background-color: rgb(230,230,230);
+}
