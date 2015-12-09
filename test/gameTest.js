@@ -17,7 +17,11 @@ describe('game',function(){
 
 			var status = game.getStatus('player2');
 			assert.equal('Please select 3 cards to pass',status.instruction);
-			assert.deepEqual(['player1','player2','player3','player4'],status.players);
+			assert.deepEqual([
+				{name:'player1',points:0}, 
+				{name:'player2',points:0}, 
+				{name:'player3',points:0}, 
+				{name:'player4',points:0}],status.players);
 			assert.equal('ola',status.hand);
 			assert.equal(1,status.location);
 		})

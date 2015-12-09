@@ -9,3 +9,76 @@ td {
 
 .name {
 }
+
+.card {
+	width: 100px;
+	height: 140px;
+	border-radius: 5px;
+}
+
+.rank {
+	padding: 4px;
+	font-family: sans-serif;
+	font-size: 18px;
+}
+.spade,.club {
+	color: black;
+}
+.diamond,.heart {
+	color: red;
+}
+.spade .suit:before {
+	content: "♠";
+}
+.heart .suit:before{
+	content: "♥";
+}
+.diamond .suit:before {
+	content: "♦";
+}
+.club .suit:before {
+	content: "♣";
+}
+.suit {
+	padding-left: 3px;
+	font-size: 20px;
+}
+.rankA .rank:before{
+	content: "A";
+}
+.rank2 .rank:before{
+	content: "2";
+}
+.rank3 .rank:before{
+	content: "3";
+}
+.rank4 .rank:before{
+	content: "4";
+}
+.rank5 .rank:before{
+	content: "5";
+}
+.rank6 .rank:before{
+	content: "6";
+}
+.rank7 .rank:before{
+	content: "7";
+}
+.rank8 .rank:before{
+	content: "8";
+}
+.rank9 .rank:before{
+	content: "9";
+}
+.rank10 .rank:before{
+	content: "10";
+}
+.rankK .rank:before{
+	content: "K";
+}
+.rankQ .rank:before{
+	content: "Q";
+}
+.rankJ .rank:before{
+	content: "J";
+}

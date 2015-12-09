@@ -17,7 +17,7 @@ describe('Pack',function(){
 	describe('drawOne',function(){
 		it('gives spade ace, at first',function(){
 			var pack = new Pack();
-			assert.equal('spade A',pack.drawOne());
+			assert.deepEqual({suit:'spade',rank:'A'},pack.drawOne().getInfo());
 		}),
 		it('gives no card after 52 cards are drawn',function(){
 			var pack = new Pack();
@@ -27,7 +27,7 @@ describe('Pack',function(){
 		it('gives heart ace as the fourteenth card',function(){
 			var pack = new Pack();
 			_.times(13,function(){pack.drawOne()});
-			assert.equal('heart A',pack.drawOne());
+			assert.deepEqual({suit:'heart',rank: 'A'},pack.drawOne().getInfo());
 		})
 	})
 });
