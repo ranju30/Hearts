@@ -1,8 +1,13 @@
-var suit = {spade:'♠', heart:'♥', diamond:'♦', club:'♣'};
-var handSrc = '{{#each hand}}<td><div class="card {{suit}} rank{{rank}}"><div class="rank"></div><div class="suit"></div></div></td>{{/each}}';
-var playerSrc = '<div class="name">{{name}}</div><div class="points">{{points}}</div>';
-var handTemplate = Handlebars.compile(handSrc);
-var playerTemplate = Handlebars.compile(playerSrc);
+var symbols = {spade:'♠', heart:'♥', diamond:'♦', club:'♣'};
+var playerTemplate = Handlebars.compile('<div class="name">{{name}}</div><div class="points">{{points}}</div>');
+var cardTemplate = Handlebars.compile('<td><div class="card {{suit}}"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
+var toCardHTML = function(card){
+	card.symbol = symbols[card.suit];
+	return cardTemplate(card);
+};
+var generateHand = function(hand){
+	return hand.map(toCardHTML).join('\r\n');
+};
 var updateBoard = function(data){
 	console.log(data);
 	var getRelativePlayer = function(step){
@@ -13,7 +18,7 @@ var updateBoard = function(data){
 	$('.leftPlayer .name').html(getRelativePlayer(1));
 	$('.oppositePlayer .name').html(getRelativePlayer(2));
 	$('.rightPlayer .name').html(getRelativePlayer(3));
-	$('.playerSelf .hand').html(handTemplate(data));
+	$('.playerSelf .hand').html(generateHand(data.hand));
 };
 var checkGameStatus = function(){
 	$.getJSON('gameStatus',updateBoard)
