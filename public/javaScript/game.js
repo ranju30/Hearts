@@ -10,6 +10,10 @@ var generateHand = function(hand){
 };
 var toggleSelection = function(){
 	$(this).toggleClass('select');
+	if($('.select').length==3)
+		$('.action').show();
+	else
+		$('.action').hide();
 };
 var bindEvents = function(){
 	$('.card').click(toggleSelection);
@@ -32,6 +36,7 @@ var checkGameStatus = function(){
 };
 var onPageReady = function(){
 	setTimeout(checkGameStatus,5000);
+	$('.action').hide();
 };
 
 $(document).ready(onPageReady);
