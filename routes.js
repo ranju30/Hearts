@@ -27,20 +27,22 @@ var redirectTo = function(res,url){
 
 var playerLogin = function(req, res){
 	var name = req.Body.userName;
-	if(!setup){
-		res.end('No spots available');
-		return;
-	}
-	console.log('body',req.Body);
+	// if(!setup){
+	// 	res.end('No spots available');
+	// 	return;
+	// }
 	res.setHeader("Set-Cookie", ["userName="+name]);
-	setup.join(name);
-	if(setup.isReady()){
-		var players = setup.listPlayers().map(function(name){return new Player(name)});
-		game = new Game(players);
-		game.deal(new Pack());
-		setup = undefined;
-	}
-	redirectTo(res,'waiting.html');	
+	// setup.join(name);
+	// if(setup.isReady()){
+	// 	var players = setup.listPlayers().map(function(name){return new Player(name)});
+	// 	game = new Game(players);
+	// 	game.deal(new Pack());
+	// 	setup = undefined;
+	// }
+	redirectTo(res,'games.html');	
+};
+var getGameList = function(req,res){
+	return [];
 };
 var getGameSetupStatus = function(req,res){
 	res.setHeader('Content-type','application/javascript');
@@ -58,14 +60,15 @@ var getGameStatus = function(req,res){
 };
 
 var playerLogout = function(req, res){
-	if(req.User && setup)
-		setup.leave(req.User.name);
+	// if(req.User && setup)
+	// 	setup.leave(req.User.name);
+	res.setHeader("Set-Cookie", '');
 	redirectTo(res,'login.html');	
 };
 
 var serveIndex = function(req, res){
 	if(req.User)
-		redirectTo(res,'game.html');
+		redirectTo(res,'games.html');
 	else
 		redirectTo(res,'login.html');
 };
@@ -101,7 +104,8 @@ var serveStaticFile = function(req, res, next){
 var loadUser = function(req,res,next){
 	var name = req.Cookies.userName;
 	var user = {name:name};
-	req.User = (setup && setup.exists(name) )||( game && game.exists(name)) && user;
+	req.User = name && user;
+	//(setup && setup.exists(name) )||( game && game.exists(name)) && user;
 	next();
 };
 
@@ -119,6 +123,9 @@ exports.get_handlers = [
 	{path: '^/logout$', handler: playerLogout},
 	{path: '^/waiting.html$', handler: ensureLoggedIn},
 	{path: '^/game.html$', handler: ensureLoggedIn},
+	{path: '^/games.html$', handler: ensureLoggedIn},
+	{path: '^/gameList$', handler: ensureLoggedIn},
+	{path: '^/gameList$', handler: getGameList},
 	{path: '^/game.html$', handler: ensureGameOn},
 	{path: '^/gameSetupStatus$', handler: getGameSetupStatus},
 	{path: '^/gameStatus$', handler: ensureLoggedIn},
