@@ -4,24 +4,52 @@
 		"selected_items":
 		[
 			[
-				"pla",
-				"players"
+				"log",
+				"login"
 			],
 			[
-				"res",
-				"result"
+				"g",
+				"games"
+			],
+			[
+				"Ga",
+				"Game"
+			],
+			[
+				"find",
+				"findByPlayer"
+			],
+			[
+				"se",
+				"self"
 			],
 			[
 				"ga",
 				"games"
 			],
 			[
+				"pl",
+				"player1"
+			],
+			[
+				"get",
+				"getHand"
+			],
+			[
+				"pla",
+				"player1"
+			],
+			[
 				"gam",
 				"game"
 			],
 			[
-				"g",
+				"gma",
 				"games"
+			],
+			[
+				"res",
+				"result"
 			],
 			[
 				"requ",
@@ -34,10 +62,6 @@
 			[
 				"fn",
 				"function"
-			],
-			[
-				"get",
-				"getCurrentGames"
 			],
 			[
 				"ex",
@@ -118,10 +142,6 @@
 			[
 				"pad",
 				"padding-left"
-			],
-			[
-				"pl",
-				"players"
 			],
 			[
 				"hand",
@@ -376,10 +396,6 @@
 				"complexDetail"
 			],
 			[
-				"find",
-				"findHighest"
-			],
-			[
 				"ob",
 				"obj"
 			],
@@ -498,27 +514,83 @@
 			[
 				"for",
 				"forEach"
-			],
-			[
-				"val",
-				"values"
-			],
-			[
-				"S",
-				"Sets"
-			],
-			[
-				"slo",
-				"slope2"
-			],
-			[
-				"slope",
-				"slope1"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "test/requestHandlerTest.js",
+			"settings":
+			{
+				"buffer_size": 1407,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "test/gameTest.js",
+			"settings":
+			{
+				"buffer_size": 2294,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "server.js",
+			"settings":
+			{
+				"buffer_size": 169,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "requestHandler.js",
+			"settings":
+			{
+				"buffer_size": 1086,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "routes.js",
+			"settings":
+			{
+				"buffer_size": 2906,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/javaScript/login.js",
+			"settings":
+			{
+				"buffer_size": 157,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "public/login.html",
+			"settings":
+			{
+				"buffer_size": 459,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/games.js",
+			"settings":
+			{
+				"buffer_size": 657,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "lib/game.js",
+			"settings":
+			{
+				"buffer_size": 1111,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -556,6 +628,7 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/ranjukr/projects/Hearts",
 		"/Users/ranjukr/projects/Hearts/lib",
 		"/Users/ranjukr/projects/Hearts/public",
 		"/Users/ranjukr/projects/Hearts/public/javaScript",
@@ -564,6 +637,8 @@
 	],
 	"file_history":
 	[
+		"/Users/ranjukr/projects/Hearts/games.js",
+		"/Users/ranjukr/projects/Hearts/public/javaScript/games.js",
 		"/Users/ranjukr/projects/Hearts/lib/game.js",
 		"/Users/ranjukr/projects/Hearts/public/javaScript/game.js",
 		"/Users/ranjukr/projects/Hearts/test/gameTest.js",
@@ -579,7 +654,6 @@
 		"/Users/ranjukr/projects/Hearts/public/stylesheets/games.css",
 		"/Users/ranjukr/projects/Hearts/public/stylesheets/game.css",
 		"/Users/ranjukr/projects/Hearts/test/requestHandlerTest.js",
-		"/Users/ranjukr/projects/Hearts/public/javaScript/games.js",
 		"/Users/ranjukr/projects/Hearts/test/sampleSuperTest.js",
 		"/Users/ranjukr/projects/Hearts/test/bodyReaderTest.js",
 		"/Users/ranjukr/projects/Hearts/lib/cookieReader.js",
@@ -690,12 +764,11 @@
 		"/Users/ranjukr/Dropbox/step_ranju/04_wc/sep04/wcLibTest.js",
 		"/Users/ranjukr/Dropbox/step_ranju/04_wc/sep04/try.js",
 		"/Users/ranjukr/r_k/sampleStdin.js",
-		"/Users/ranjukr/Dropbox/step_ranju/04_wc/wcAssignmentOld.js",
-		"/Users/ranjukr/Dropbox/step_ranju/04_wc/wcTestOld.js"
+		"/Users/ranjukr/Dropbox/step_ranju/04_wc/wcAssignmentOld.js"
 	],
 	"find":
 	{
-		"height": 39.0
+		"height": 62.0
 	},
 	"find_in_files":
 	{
@@ -710,6 +783,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"[];\n",
+			"(){}};\n",
+			"playerLogin",
 			"ld",
 			"getCurrentGames",
 			"getGameList",
@@ -834,10 +910,7 @@
 			":",
 			"r.compare.point",
 			"number",
-			"number2",
-			"number1",
-			"innerFunction",
-			"r.finder"
+			"number2"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -855,13 +928,304 @@
 	"groups":
 	[
 		{
+			"selected": 6,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "test/requestHandlerTest.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1407,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1052,
+								1052
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 3.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "test/gameTest.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2294,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1079,
+								1079
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 4.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 169,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								60,
+								60
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "requestHandler.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1086,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2906,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1193.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "public/javaScript/login.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "public/login.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 459,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								459,
+								459
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		},
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 4,
+					"file": "routes.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2906,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								92,
+								66
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "lib/games.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								27
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "lib/game.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1111,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								191,
+								191
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -893,7 +1257,7 @@
 		"cols":
 		[
 			0.0,
-			0.498487489798,
+			0.507991535557,
 			1.0
 		],
 		"rows":
@@ -915,7 +1279,7 @@
 	"project": "hearts.sublime-project",
 	"replace":
 	{
-		"height": 58.0
+		"height": 118.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -925,12 +1289,32 @@
 		"selected_items":
 		[
 			[
-				"gt",
-				"test/gameTest.js"
+				"log",
+				"public/javaScript/login.js"
+			],
+			[
+				"route",
+				"routes.js"
+			],
+			[
+				"req",
+				"requestHandler.js"
+			],
+			[
+				"gam",
+				"lib/game.js"
 			],
 			[
 				"game",
-				"lib/game.js"
+				"test/gameTest.js"
+			],
+			[
+				"rout",
+				"routes.js"
+			],
+			[
+				"gt",
+				"test/gameTest.js"
 			],
 			[
 				"reh",

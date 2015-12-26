@@ -1,4 +1,4 @@
 var http = require('http');
-var requestHandler = require('./requestHandler');
-http.createServer(requestHandler).listen(3011);
+var controller = require('./lib/controller');
+http.createServer(controller).listen(3011);
 console.log('Server running on port 3011');
