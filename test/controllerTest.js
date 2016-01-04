@@ -60,7 +60,7 @@ describe('controller',function(){
 		it('should take player to game page if logged in',function(done){
 			request(handler)
 				.get('/game.html')
-				.set('Cookie', ['userName=Ranju'])
+				.set('Cookie', ['userName=Jack'])
 				.expect(/Hearts/)
 				.expect(200,done)
 		})
@@ -72,23 +72,61 @@ describe('controller',function(){
 				.expect(302)
 				.expect('Location','login.html',done);
 		})
-		it.skip('should take player to game page if logged in',function(done){
+		it('should take player to game page if logged in',function(done){
 			request(handler)
 				.get('/gameStatus')
-				.set('Cookie', ['userName=Ranju'])
+				.set('Cookie', ['userName=Jack'])
 				.expect(200)
 				.expect(/Waiting for other players/,done)
 		})
 		it.skip('should show status if 4 players have joined',function(done){
 			request(handler)
 				.get('/gameStatus')
-				.set('Cookie', ['userName=Ranju'])
-				.set('Cookie', ['userName=Anjaly'])
-				.set('Cookie', ['userName=Sanjit'])
-				.set('Cookie', ['userName=Shruti'])
-
-				.expect(/Select three card/)
-				.expect(200,done)
+				.set('Cookie', ['userName=Jack'])
+				.end(function(){
+					request(handler)
+						.get('/gameStatus')
+						.set('Cookie', ['userName=Jill'])
+						.end(function(){
+							request(handler)
+								.get('/gameStatus')
+								.set('Cookie', ['userName=Hill'])
+								.end(function(){
+									request(handler)
+										.get('/gameStatus')
+										.set('Cookie', ['userName=Rose'])
+										.expect(200,done)
+								})
+						})
+				})
 		})
+	});
+	describe('startGame',function(){
+		it('should start the gameby playing club-2',function(done){
+			request(handler)
+				.post('/login')
+				.send('userName=John')
+				.end(function(){
+					request(handler)
+						.post('/login')
+						.send('userName=Jill')
+						.end(function(){
+							request(handler)
+								.post('/login')
+								.send('userName=neil')
+								.end(function(){
+									request(handler)
+										.post('/login')
+										.send('userName=Johnie')
+										.end(function(){
+											request(handler)
+												.post('/startGame')
+												.set('cookie',['userName=Jill'])
+												.expect(200,done)
+										})
+								})
+						})
+				})
+		});
 	});
 });
