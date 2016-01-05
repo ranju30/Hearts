@@ -20,13 +20,13 @@ describe('Player',function(){
 	describe('throwACard',function(){
 		it('throws selected card on the board',function(){
 			var player = new Player();
-			var card = {suit:'spade',rank:'A'};
+			var card = {suit:'spade',rank:'A',getInfo:sinon.stub().returns({suit:'spade',rank:'A'})};
 			player.take(card);
-			var card1 = {suit:'heart',rank:'10'};
+			var card1 = {suit:'heart',rank:'10',getInfo:sinon.stub().returns({suit:'heart',rank:'10'})};
 			player.take(card1);
-			assert.deepEqual([{suit:'spade',rank:'A'},{suit:'heart',rank:'10'}],player.hand);
+			assert.deepEqual([{suit:'spade',rank:'A'},{suit:'heart',rank:'10'}],player.getHand());
 			player.throwACard(card);
-			assert.deepEqual([{suit:'heart',rank:'10'}],player.hand);
+			assert.deepEqual([{suit:'heart',rank:'10'}],player.getHand());
 		});
 	});
 });

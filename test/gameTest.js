@@ -4,7 +4,7 @@ var _ = require('lodash');
 var Game = require('../lib/game');
 var player2 = {name:'player2',take:sinon.spy(),getHand:sinon.stub()};
 var players = [
-	{name:'player1',take:function(){},getHand:sinon.stub().returns([{suit:'club',rank:'2'}])},
+	{name:'player1',take:function(){},getHand:sinon.stub().returns([{suit:'club',rank:'2'},{suit:'diamond',rank:'10'},{suit:'heart',rank:'5'}]),throwACard:function(){}},
 	player2,
 	{name:'player3',take:function(){},getHand:function(){}},
 	{name:'player4',take:function(){},getHand:function(){}}];
@@ -61,22 +61,6 @@ describe('game',function(){
 			assert.deepEqual({name:'firstGame',players:['player1','player2','player3','player4']},game.summary);
 		});
 	});
-	describe('hasTwoOfClub',function(){
-		it('tells which player have club-2 in hand',function(){
-			var game = new Game(dummyPack);
-			players.forEach(function(p){game.join(p)});
-			assert.equal(game.hasTwoOfClub(),'player1');
-			assert.notEqual(game.hasTwoOfClub(),'player2');
-		});
-	});
-	describe('trickStarter',function(){
-		it('tells about the player who will start the trick',function(){
-			var game = new Game(dummyPack);
-			players.forEach(function(p){game.join(p)});
-			assert.equal(game.trickStarter(),'player1');
-			assert.notEqual(game.trickStarter(),'player2');
-		});
-	});
 	describe('nextPlayer',function(){
 		it('gives the player next to the current player',function(){
 			var game = new Game(dummyPack);
@@ -86,5 +70,21 @@ describe('game',function(){
 			assert.equal(game.nextPlayer('player4'),'player1');
 		});
 	});
+	describe('isTurn',function(){
+		it('should return true if it is the given player\'s turn',function(){
+			var game = new Game(dummyPack);
+			players.forEach(function(p){game.join(p)});
+			assert.ok(game.isTurn('player1'));
+			assert.notOk(game.isTurn('player3'));
+		});
+	});
+	describe('updateHand',function(){
+		it('should update the hand of the player according to the card he played',function(){
+			var game = new Game(dummyPack);
+			players.forEach(function(p){game.join(p)});
+			game.updateHand('player1',{suit:'club',rank:'2'});
+			assert.deepEqual([{suit:'club',rank:'2'}],game.playedCards);
+		})
+	})
 });
 

@@ -45,7 +45,7 @@ var checkGameStatus = function(){
 	$.getJSON('gameStatus',updateBoard)
 };
 var onPageReady = function(){
-	setTimeout(checkGameStatus,5000);
+	setInterval(checkGameStatus,7000);
 	$('.action').hide();
 };
 
