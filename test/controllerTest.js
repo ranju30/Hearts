@@ -20,7 +20,6 @@ describe('controller',function(){
 	}),
 	describe('login',function(){
 		it('should join set cookies when user sends userName',function(done){
-			
 			request(handler)
 				.post('/login')
 				.send('userName=John')
@@ -30,7 +29,6 @@ describe('controller',function(){
 		}),
 		describe('when no games are active',function(){
 			it('should start a new game & join it',function(){
-				
 				request(handler)
 					.post('/login')
 					.send('userName=John')
@@ -77,7 +75,7 @@ describe('controller',function(){
 				.get('/gameStatus')
 				.set('Cookie', ['userName=Jack'])
 				.expect(200)
-				.expect(/Waiting for other players/,done)
+				.expect(/Waiting for/,done)
 		})
 		it('should show status if 4 players have joined',function(done){
 			request(handler)

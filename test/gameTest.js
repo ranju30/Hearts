@@ -16,7 +16,7 @@ describe('game',function(){
 			var player1 = {name:'player1',getHand:sinon.stub().returns('ola')};
 			game.join(player1);
 			var status = game.getStatus('player1');
-			assert.equal('Waiting for other players',status.instruction);
+			assert.equal('Waiting for 3 players',status.instruction);
 			assert.deepEqual([{name:'player1',points:0}],status.players);
 			assert.equal('ola',status.hand);
 			assert.equal(0,status.location);

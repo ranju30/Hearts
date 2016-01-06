@@ -3,8 +3,13 @@ td {
 	width: 200px;
 	height: 150px;
 }
+
 .playedCards div {
 	float: left;
+	width: 47px;
+	height: -6px;
+	 padding-bottom: 17%;
+    padding-right: 6%;
 }
 
 .card {
