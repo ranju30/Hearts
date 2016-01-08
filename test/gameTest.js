@@ -2,12 +2,12 @@ var assert = require('chai').assert;
 var sinon = require('sinon');
 var _ = require('lodash');
 var Game = require('../lib/game');
-var player2 = {name:'player2',take:sinon.spy(),getHand:sinon.stub().returns([{suit:'club',rank:'7'}])};
+var player2 = {name:'player2',throwACard:function(){},take:sinon.spy(),getHand:sinon.stub().returns([{suit:'club',rank:'7'}])};
 var players = [
 	{name:'player1',take:function(){},getHand:sinon.stub().returns([{suit:'club',rank:'2'},{suit:'diamond',rank:'10'},{suit:'heart',rank:'5'}]),throwACard:function(){}},
 	player2,
 	{name:'player3',take:function(){},getHand:sinon.stub().returns([{suit:'diamond',rank:'9'},{suit:'club',rank:'8'}]),throwACard:function(){}},
-	{name:'player4',take:function(){},getHand:function(){}}];
+	{name:'player4',take:function(){},throwACard:function(){},getHand:function(){}}];
 var dummyPack = {shuffle:function(){},drawOne:function(){}};
 describe('game',function(){
 	describe('getStatus',function(){
@@ -71,29 +71,12 @@ describe('game',function(){
 		});
 	});
 	describe('isTurn',function(){
-		it('should return true if it is the given player\'s turn',function(){
-			var game = new Game(dummyPack);
-			players.forEach(function(p){game.join(p)});
-			assert.ok(game.isTurn('player1',{suit:'club',rank:'2'}));
-		});
-		it('should return false if it is not the given player\'s turn',function(){
-			var game = new Game(dummyPack);
-			players.forEach(function(p){game.join(p)});
-			assert.notOk(game.isTurn('player3',{suit:'heart',rank:'2'}));
-		});
-		it('should validate the given card for the card to be played',function(){
-			var game = new Game(dummyPack);
-			players.forEach(function(p){game.join(p)});
-			game.isTurn('player1',{suit:'club',rank:'2'});
-			game.updateHand('player1',{suit:'club',rank:'2'});
-			assert.ok(game.isTurn('player2',{suit:'club',rank:'7'}));
-		});
 		it('should validate the given card for the card to be played and return false',function(){
 			var game = new Game(dummyPack);
 			players.forEach(function(p){game.join(p)});
-			game.isTurn('player1',{suit:'club',rank:'2'});
+			game.isTurn('player1');
 			game.updateHand('player1',{suit:'club',rank:'2'});
-			assert.notOk(game.isTurn('player2',{suit:'heart',rank:'7'}));
+			assert.notOk(game.isTurn('player3'));
 		});
 	});
 	describe('updateHand',function(){
@@ -101,15 +84,15 @@ describe('game',function(){
 			var game = new Game(dummyPack);
 			players.forEach(function(p){game.join(p)});
 			game.updateHand('player1',{suit:'club',rank:'2'});
-			assert.deepEqual([{suit:'club',rank:'2'}],game.playedCards);
+			assert.deepEqual([{suit:'club',rank:'2',playerName: "player1",priority: 2}],game.playedCards);
 		});
 		it('should allow to play a card if suit is same',function(){
 			var game = new Game(dummyPack);
 			players.forEach(function(p){game.join(p)});
 			game.updateHand('player1',{suit:'club',rank:'2'});
-			assert.deepEqual([{suit:'club',rank:'2'}],game.playedCards);
-			game.updateHand('player3',{suit:'club',rank:'7'});
-			assert.deepEqual([{suit:'club',rank:'2'},{suit:'club',rank:'7'}],game.playedCards);
+			assert.deepEqual([{suit:'club',rank:'2',playerName: "player1",priority: 2}],game.playedCards);
+			game.updateHand('player3',{suit:'club',rank:'K'});
+			assert.deepEqual([{suit:'club',rank:'2',playerName: "player1",priority: 2},{suit:'club',rank:'K',playerName: "player3",priority: 13}],game.playedCards);
 		});
 	});
 	describe('isValidCard',function(){
@@ -124,6 +107,18 @@ describe('game',function(){
 			players.forEach(function(p){game.join(p)});
 			game.updateHand('player1',{suit:'club',rank:'2'});
 			assert.notOk(game.isValidCard({suit:'heart',rank:'7'}));
+		});
+	});
+	describe('trickOwner',function(){
+		it('should change the player turn according to the owner of the trick',function(){
+			var game = new Game(dummyPack);
+			players.forEach(function(p){game.join(p)});
+			game.updateHand('player1',{suit:'club',rank:'2'});
+			game.updateHand('player2',{suit:'club',rank:'J'});
+			game.updateHand('player3',{suit:'club',rank:'K'});
+			game.updateHand('player4',{suit:'club',rank:'8'});
+			assert.deepEqual(game.trickOwner(),'player3');		
+			assert.notEqual(game.trickOwner(),'player4');		
 		});
 	});
 });
