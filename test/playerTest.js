@@ -29,4 +29,13 @@ describe('Player',function(){
 			assert.deepEqual([{suit:'heart',rank:'10'}],player.getHand());
 		});
 	});
+	describe('calculatePoints',function(){
+		it('should calculate points of a player after each trick',function(){
+			var player = new Player();
+			player.calculatePoints(13);
+			assert.equal(13,player.getPoints());
+			player.calculatePoints(1);
+			assert.equal(14,player.getPoints());
+		});
+	});
 });

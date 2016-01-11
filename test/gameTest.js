@@ -2,12 +2,12 @@ var assert = require('chai').assert;
 var sinon = require('sinon');
 var _ = require('lodash');
 var Game = require('../lib/game');
-var player2 = {name:'player2',throwACard:function(){},take:sinon.spy(),getHand:sinon.stub().returns([{suit:'club',rank:'7'}])};
+var player2 = {name:'player2',calculatePoints:function(){},throwACard:function(){},take:sinon.spy(),getHand:sinon.stub().returns([{suit:'club',rank:'K'}])};
 var players = [
-	{name:'player1',take:function(){},getHand:sinon.stub().returns([{suit:'club',rank:'2'},{suit:'diamond',rank:'10'},{suit:'heart',rank:'5'}]),throwACard:function(){}},
+	{name:'player1',take:function(){},getHand:sinon.stub().returns([{suit:'club',rank:'2'},{suit:'diamond',rank:'A'},{suit:'heart',rank:'A'}]),throwACard:function(){}},
 	player2,
-	{name:'player3',take:function(){},getHand:sinon.stub().returns([{suit:'diamond',rank:'9'},{suit:'club',rank:'8'}]),throwACard:function(){}},
-	{name:'player4',take:function(){},throwACard:function(){},getHand:function(){}}];
+	{name:'player3',take:function(){},getHand:sinon.stub().returns([{suit:'diamond',rank:'3'},{suit:'club',rank:'3'}]),throwACard:function(){}},
+	{name:'player4',take:function(){},throwACard:function(){},getHand:sinon.stub().returns([{suit:'diamond',rank:'4'},{suit:'club',rank:'4'}])}];
 var dummyPack = {shuffle:function(){},drawOne:function(){}};
 describe('game',function(){
 	describe('getStatus',function(){
@@ -96,17 +96,15 @@ describe('game',function(){
 		});
 	});
 	describe('isValidCard',function(){
-		it('should return true if played card is same suit',function(){
+		it('should return true if played card is from same suit',function(){
 			var game = new Game(dummyPack);
 			players.forEach(function(p){game.join(p)});
-			game.updateHand('player1',{suit:'club',rank:'2'});
-			assert.ok(game.isValidCard({suit:'club',rank:'7'}));
+			assert.ok(game.isValidCard('player1',{suit:'club',rank:'2'}));
 		});
-		it('should return false if played card is same suit',function(){
+		it('should return false if played card is not from same suit',function(){
 			var game = new Game(dummyPack);
 			players.forEach(function(p){game.join(p)});
-			game.updateHand('player1',{suit:'club',rank:'2'});
-			assert.notOk(game.isValidCard({suit:'heart',rank:'7'}));
+			assert.notOk(game.isValidCard('player1',{suit:'heart',rank:'7'}));
 		});
 	});
 	describe('trickOwner',function(){
@@ -114,11 +112,40 @@ describe('game',function(){
 			var game = new Game(dummyPack);
 			players.forEach(function(p){game.join(p)});
 			game.updateHand('player1',{suit:'club',rank:'2'});
-			game.updateHand('player2',{suit:'club',rank:'J'});
-			game.updateHand('player3',{suit:'club',rank:'K'});
-			game.updateHand('player4',{suit:'club',rank:'8'});
-			assert.deepEqual(game.trickOwner(),'player3');		
+			game.updateHand('player2',{suit:'club',rank:'K'});
+			game.updateHand('player3',{suit:'club',rank:'3'});
+			game.updateHand('player4',{suit:'club',rank:'4'});
+			assert.deepEqual(game.trickOwner(),'player2');		
 			assert.notEqual(game.trickOwner(),'player4');		
+		});
+	});
+	describe('hasCurrentSuit',function(){
+		it('should return true if a player have the running suit in hand',function(){
+			var game = new Game(dummyPack);
+			players.forEach(function(p){game.join(p)});
+			assert.ok(game.hasCurrentSuit('club','player1'));
+		});
+		it('should return false if a player donot have running suit',function(){
+			var game = new Game(dummyPack);
+			players.forEach(function(p){game.join(p)});
+			assert.notOk(game.hasCurrentSuit('spade','player1'));
+		});
+	});
+	describe('isNotAPenaltyCard',function(){
+		it('return true if it is not a penalty card',function(){
+			var game = new Game(dummyPack);
+			players.forEach(function(p){game.join(p)});
+			assert.ok(game.isNotAPenaltyCard({rank:'2',suit:'club'}));
+		});
+		it('return false if it is a penalty card of any heart card',function(){
+			var game = new Game(dummyPack);
+			players.forEach(function(p){game.join(p)});
+			assert.notOk(game.isNotAPenaltyCard({rank:'2',suit:'heart'}));
+		});
+		it('return false if it is a penalty card of spade Q',function(){
+			var game = new Game(dummyPack);
+			players.forEach(function(p){game.join(p)});
+			assert.notOk(game.isNotAPenaltyCard({rank:'Q',suit:'spade'}));
 		});
 	});
 });
