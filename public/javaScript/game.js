@@ -6,17 +6,14 @@ var toCardHTML = function(card){
 	card.symbol = symbols[card.suit];
 	return cardTemplate(card);
 };
-var toBoardHtml = function(card){
-	card.symbol = symbols[card.suit];
-	return boardTemplate(card);
-}
 
 var generateHand = function(hand){
 	return hand.map(toCardHTML).join('\r\n');
 };
 
-var showPlayedCard = function(card){
-	return toBoardHtml(card);
+var showPlayedCardToHTML = function(card){
+	card.symbol = symbols[card.suit];
+	return boardTemplate(card);
 };
 
 var convertToValueObject = function(cardID){
@@ -39,13 +36,17 @@ var bindEvents = function(){
 };
 var updateBoard = function(data){
 	var getRelativePlayer = function(step){
-		return playerTemplate(data.players[(data.location+step)%4],data.point);
+		return playerTemplate(data.players[(data.location+step)%4]);
 	};
 	$('.status').html(data.instruction);
 	$('.playerSelf .name').html(getRelativePlayer(0));
-	$('.leftPlayer .name').html(getRelativePlayer(1));
+
+	$('.leftPlayer').html(getRelativePlayer(1));
+
 	$('.oppositePlayer .name').html(getRelativePlayer(2));
+
 	$('.rightPlayer .name').html(getRelativePlayer(3));
+
 	$('.playerSelf .hand').html(generateHand(data.hand));
 	bindEvents();
 };
@@ -58,7 +59,7 @@ var getBoardStatus = function(data){
 	}
 	else
 		cards.forEach(function(card,index){
-			$('.playedCards .card'+index).html(showPlayedCard(card));
+			$('.playedCards .card'+index).html(showPlayedCardToHTML(card));
 		});
 };
 var updateRound = function(){

@@ -23,9 +23,9 @@ describe('controller',function(){
 			request(handler)
 				.post('/login')
 				.send('userName=John')
+				.expect('set-cookie','userName=John; Path=/')
 				.expect(302)
 				.expect('Location','game.html',done)
-				.expect('Set-Cookie','userName=John',done)
 		}),
 		describe('when no games are active',function(){
 			it('should start a new game & join it',function(){
@@ -33,6 +33,7 @@ describe('controller',function(){
 					.post('/login')
 					.send('userName=John')
 					.expect(302)
+					.expect('Location','game.html')
 				assert.equal(1,games.count());
 				assert.ok(games.findByPlayer('John'));
 			})
@@ -44,7 +45,7 @@ describe('controller',function(){
 				.get('/logout')
 				.expect(302)
 				.expect('Location','login.html')
-				.expect('Set-Cookie','',done)
+				.expect('set-cookie',"userName=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT",done)
 		})
 	}),
 	describe('game.html',function(){
@@ -126,6 +127,35 @@ describe('controller',function(){
 											request(handler)
 												.post('/startGame')
 												.set('cookie',['userName=Jill'])
+												.expect(200,done)
+										})
+								})
+						})
+				})
+		});
+	});
+	describe('startGame',function(){
+		it('should start the gameby playing club-2',function(done){
+			request(handler)
+				.post('/login')
+				.send('userName=John')
+				.end(function(){
+					request(handler)
+						.post('/login')
+						.send('userName=Jill')
+						.end(function(){
+							request(handler)
+								.post('/login')
+								.send('userName=neil')
+								.end(function(){
+									request(handler)
+										.post('/login')
+										.send('userName=Johnie')
+										.end(function(){
+											request(handler)
+												.get('/boardStatus')
+												.set('cookie',['userName=Jill'])
+												.expect([])
 												.expect(200,done)
 										})
 								})
