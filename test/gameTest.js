@@ -2,22 +2,44 @@ var assert = require('chai').assert;
 var sinon = require('sinon');
 var _ = require('lodash');
 var Game = require('../lib/game');
-var player2 = {name:'player2',calculatePoints:function(){},throwACard:function(){},take:sinon.spy(),getHand:sinon.stub().returns([{suit:'club',rank:'K'}])};
+var player2 = {name:'player2',
+				calculatePoints:function(){},
+				getPoints:function(){},
+				throwACard:function(){},
+				take:sinon.spy(),getHand:sinon.stub().returns([{suit:'club',rank:'K'}])};
+
 var players = [
-	{name:'player1',take:function(){},getHand:sinon.stub().returns([{suit:'club',rank:'2'},{suit:'diamond',rank:'A'},{suit:'heart',rank:'A'}]),throwACard:function(){}},
+	{name:'player1',
+		calculatePoints:function(){},
+		getPoints:function(){},
+		take:function(){},
+		getHand:sinon.stub().returns([{suit:'club',rank:'2'},{suit:'diamond',rank:'A'},{suit:'heart',rank:'A'}]),
+		throwACard:function(){}},
 	player2,
-	{name:'player3',take:function(){},getHand:sinon.stub().returns([{suit:'diamond',rank:'3'},{suit:'club',rank:'3'}]),throwACard:function(){}},
-	{name:'player4',take:function(){},throwACard:function(){},getHand:sinon.stub().returns([{suit:'diamond',rank:'4'},{suit:'club',rank:'4'}])}];
+	{name:'player3',
+		calculatePoints:function(){},
+		getPoints:function(){},
+		take:function(){},
+		getHand:sinon.stub().returns([{suit:'diamond',rank:'3'},{suit:'club',rank:'3'}]),
+		throwACard:function(){}},
+	{name:'player4',
+		calculatePoints:function(){},
+		getPoints:function(){},
+		take:function(){},
+		throwACard:function(){},
+		getHand:sinon.stub().returns([{suit:'diamond',rank:'4'},{suit:'club',rank:'4'}])}
+	];
+
 var dummyPack = {shuffle:function(){},drawOne:function(){}};
 describe('game',function(){
 	describe('getStatus',function(){
 		it('gives first player name and instructs to wait for others when game has not started',function(){
 			var game = new Game();
-			var player1 = {name:'player1',getHand:sinon.stub().returns('ola')};
+			var player1 = {name:'player1',getHand:sinon.stub().returns('ola'),calculatePoints:function(){},getPoints:function(){}};
 			game.join(player1);
 			var status = game.getStatus('player1');
 			assert.equal('Waiting for 3 players',status.instruction);
-			assert.deepEqual([{name:'player1',points:0}],status.players);
+			assert.deepEqual([{name:'player1',points:player1.getPoints()}],status.players);
 			assert.equal('ola',status.hand);
 			assert.equal(0,status.location);
 		});
