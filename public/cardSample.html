@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sample Cards</title>
+	<link rel="stylesheet" href="stylesheets/game.css">
+</head>
+<body>
+	<script type="text/javascript" src="javascript/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="javascript/handlebars.min-v4.0.5.js"></script>
+
+	<script type="text/javascript">
+    var clicks = 0;
+    function onClick() {
+        clicks += 1;
+        document.getElementById("clicks").innerHTML = clicks;
+    };
+    </script>
+    <button type="button" onClick="onClick()">Click me</button>
+    <p>Clicks: <a id="clicks">0</a></p>
+
+	<table>
+		<tr class="hand">
+			<td>
+				<div class="card spade"><div class="rank">A</div><div class="suit">♠</div></div>
+			</td>
+		</tr>
+	</table>
+	<script>
+	var toggleSelection = function(){
+		$(this).toggleClass('select');
+	};
+	var onPageReady = function(){
+		$('.card').click(toggleSelection);
+	};
+	$(document).ready(onPageReady);
+	</script>
+</body>
+</html>
+
+
+    
+

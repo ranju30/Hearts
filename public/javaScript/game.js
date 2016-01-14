@@ -2,6 +2,9 @@ var symbols = {spade:'♠', heart:'♥', diamond:'♦', club:'♣'};
 var playerTemplate = Handlebars.compile('<div class="name">{{name}}</div><div class="points">{{points}}</div>');
 var cardTemplate = Handlebars.compile('<td><div class="card {{suit}}" id="{{suit}} {{rank}}""><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
 var boardTemplate = Handlebars.compile('<td height="20px" width="3px"><div class="{{suit}}" id="{{suit}} {{rank}}""><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
+
+var gameStatusTime;
+
 var toCardHTML = function(card){
 	card.symbol = symbols[card.suit];
 	return cardTemplate(card);
@@ -50,6 +53,16 @@ var updateBoard = function(data){
 	$('.playerSelf .hand').html(generateHand(data.hand));
 	bindEvents();
 };
+var finishGame = function(data){
+	$('.status').html(data.winner);
+	clearInterval(gameStatusTime);
+};
+var checkGameStatus = function(){
+	$.getJSON('gameStatus',updateBoard)
+};
+var checkGameOver = function(){
+	$.getJSON('gameOver',finishGame);
+}
 var getBoardStatus = function(data){
 	var cards = JSON.parse(data);
 	if(cards.length==0){
@@ -64,14 +77,14 @@ var getBoardStatus = function(data){
 };
 var updateRound = function(){
 	$.get('boardStatus',getBoardStatus);
-};
-var checkGameStatus = function(){
-	$.getJSON('gameStatus',updateBoard)
+	checkGameOver();
 };
 var onPageReady = function(){
-	setInterval(checkGameStatus,500);
-	$('.action').hide();
-	setInterval(updateRound,500);
+	gameStatusTime = setInterval(function(){
+		checkGameStatus();
+		updateRound();
+		$('.action').hide();
+	},1500);
 };
 
 $(document).ready(onPageReady);
