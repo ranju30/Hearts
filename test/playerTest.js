@@ -38,4 +38,15 @@ describe('Player',function(){
 			assert.equal(14,player.getPoints());
 		});
 	});
+	describe('calculateTotalPoints',function(){
+		it('should calculate total points of a player after every round',function(){
+			var player = new Player();
+			player.calculatePoints(13);
+			assert.equal(13,player.getPoints());
+			player.calculatePoints(1);
+			assert.equal(14,player.getPoints());
+			player.calculateTotalPoints();
+			assert.equal(14,player.getTotalPoints());
+		});
+	});
 });

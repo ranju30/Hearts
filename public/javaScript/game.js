@@ -1,5 +1,5 @@
 var symbols = {spade:'♠', heart:'♥', diamond:'♦', club:'♣'};
-var playerTemplate = Handlebars.compile('<div class="name">{{name}}</div><div class="points">{{points}}</div>');
+var playerTemplate = Handlebars.compile('<div class="name">{{name}}</div><div class="points">{{points}}</div><div class="total">{{total}}</div>');
 var cardTemplate = Handlebars.compile('<td><div class="card {{suit}}" id="{{suit}} {{rank}}""><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
 var boardTemplate = Handlebars.compile('<td height="20px" width="3px"><div class="{{suit}}" id="{{suit}} {{rank}}""><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
 
@@ -79,12 +79,19 @@ var updateRound = function(){
 	$.get('boardStatus',getBoardStatus);
 	checkGameOver();
 };
-var onPageReady = function(){
-	gameStatusTime = setInterval(function(){
+
+var timer = function(){
+	setInterval(function(){
 		checkGameStatus();
 		updateRound();
 		$('.action').hide();
 	},1500);
 };
 
+var onPageReady = function(){
+	gameStatusTime = timer();
+};
+
 $(document).ready(onPageReady);
+
+
