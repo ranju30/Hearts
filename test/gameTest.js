@@ -3,30 +3,38 @@ var sinon = require('sinon');
 var _ = require('lodash');
 var Game = require('../lib/game');
 var player2 = {name:'player2',
-				calculatePoints:function(){},
-				getPoints:function(){},
+				calculatePoints:sinon.spy(),
+				calculateTotalPoints:sinon.spy(),
+				getPoints:sinon.stub().returns(26),
 				throwACard:function(){},
+				getTotalPoints:sinon.stub().returns(40),
 				take:sinon.spy(),getHand:sinon.stub().returns([{suit:'heart',rank:'K'}])};
 
 var players = [
 	{name:'player1',
-		calculatePoints:function(){},
+		calculatePoints:sinon.spy(),
+		calculateTotalPoints:sinon.spy(),
 		getPoints:function(){},
 		take:function(){},
+		getTotalPoints:sinon.stub().returns(7),
 		getHand:sinon.stub().returns([{suit:'club',rank:'2'},{suit:'diamond',rank:'A'},{suit:'heart',rank:'A'}]),
 		throwACard:function(){}},
 	player2,
 	{name:'player3',
-		calculatePoints:function(){},
+		calculatePoints:sinon.spy(),
+		calculateTotalPoints:sinon.spy(),
 		getPoints:function(){},
 		take:function(){},
+		getTotalPoints:sinon.stub().returns(70),
 		getHand:sinon.stub().returns([{suit:'diamond',rank:'3'},{suit:'club',rank:'3'}]),
 		throwACard:function(){}},
 	{name:'player4',
-		calculatePoints:function(){},
+		calculatePoints:sinon.spy(),
+		calculateTotalPoints:sinon.spy(),
 		getPoints:function(){},
 		take:function(){},
 		throwACard:function(){},
+		getTotalPoints:sinon.stub().returns(90),
 		getHand:sinon.stub().returns([{suit:'diamond',rank:'4'},{suit:'club',rank:'4'}])}
 	];
 
@@ -34,11 +42,11 @@ describe('game',function(){
 	describe('getStatus',function(){
 		it('gives first player name and instructs to wait for others when game has not started',function(){
 			var game = new Game();
-			var player1 = {name:'player1',getHand:sinon.stub().returns('ola'),calculatePoints:function(){},getPoints:function(){}};
+			var player1 = {name:'player1',getHand:sinon.stub().returns('ola'),calculatePoints:function(){},getPoints:function(){},getTotalPoints:function(){}};
 			game.join(player1);
 			var status = game.getStatus('player1');
 			assert.equal('Waiting for 3 players',status.instruction);
-			assert.deepEqual([{name:'player1',points:player1.getPoints()}],status.players);
+			assert.deepEqual([{name:'player1',points:player1.getPoints(),total:player1.getTotalPoints()}],status.players);
 			assert.equal('ola',status.hand);
 			assert.equal(0,status.location);
 		});
@@ -48,16 +56,6 @@ describe('game',function(){
 			var status = game.getStatus('player2');
 			assert.equal("player1's turn",status.instruction);
 			assert.equal(1,status.location);
-		});
-	});
-	describe.skip('join of 4 players',function(){
-		it('deals the pack & gives 13 cards to each player',function(){
-			var pack = {shuffle:sinon.spy(),drawOne:sinon.spy()};
-			var game = new Game();
-			players.forEach(function(p){game.join(p)});
-			assert.ok(pack.shuffle.calledOnce);
-			assert.ok(pack.drawOne.callCount,52);
-			assert.ok(player2.take.callCount,13);
 		});
 	});
 	describe('exists',function(){
@@ -175,6 +173,65 @@ describe('game',function(){
 			players.forEach(function(p){game.join(p)});
 			assert.notOk(game.hasOnlyHeart('player1'));
 			assert.ok(game.hasOnlyHeart('player2'));
+		});
+	});
+	describe('isGameOver',function(){
+		it('returns true if any 1 player gets 100 point',function(){
+			var game = new Game();
+			var allPlayers = [{name:'p1',getTotalPoints:sinon.stub().returns(110)},{name:'p2',getTotalPoints:function(){}}]
+			allPlayers.forEach(function(p){game.join(p)});
+			assert.ok(game.isGameOver());			
+		});
+		it('returns false if all player point is less than 100 point',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			assert.notOk(game.isGameOver());			
+		});
+	});
+	describe('getWinner',function(){
+		it('returns the player name who has the less points',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			assert.deepEqual({winner:'Game Over. Winner is : player1'},game.getWinner());
+		});
+	});
+	describe('isMoonShoot',function(){
+		it('returns true if a player score 26 in one round',function(){
+			var game = new Game();
+			var allPlayers = [{name:'p1',getPoints:sinon.stub().returns(26)},{name:'p2',getPoints:function(){}}]
+			allPlayers.forEach(function(p){game.join(p)});
+			assert.ok(game.isMoonShoot());
+		});
+		it('returns return false if any player dont get 26',function(){
+			var game = new Game();
+			var allPlayers = [{name:'p1',getPoints:sinon.stub().returns(25)},{name:'p2',getPoints:function(){}}]
+			allPlayers.forEach(function(p){game.join(p)});
+			assert.notOk(game.isMoonShoot());
+		});
+	});
+	describe('addPenaltyPointsToOther',function(){
+		it('if moon is hitted check relevent functions are called for who have not hit moon',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			game.addPenaltyPointsToOther();
+			assert.equal(players[0].calculatePoints.callCount,2);
+			assert.equal(players[0].calculateTotalPoints.callCount,1);
+		});
+		it('if moon is hitted check relevent functions are called who hit moon',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			game.addPenaltyPointsToOther();
+			assert.equal(players[1].calculatePoints.callCount,3);
+			assert.equal(players[1].calculateTotalPoints.callCount,2);
+		});
+	});
+	describe('addTotalPoints',function(){
+		it('check when function is called relevant function should called',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			game.addTotalPoints();
+			assert.equal(players[3].calculateTotalPoints.callCount,3);
+			assert.equal(players[3].calculatePoints.callCount,5);
 		});
 	});
 });
