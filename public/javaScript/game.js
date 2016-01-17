@@ -45,10 +45,12 @@ var updateBoard = function(data){
 		return totalPointTemplate(data.players[(data.location+step)%4]);
 	}
 	$('.status').html(data.instruction);
+
 	$('.totalPoint .name1').html(getTotalPoints(0));
 	$('.totalPoint .name2').html(getTotalPoints(1));
 	$('.totalPoint .name3').html(getTotalPoints(2));
 	$('.totalPoint .name4').html(getTotalPoints(3));
+	
 	$('.playerSelf .name').html(getRelativePlayer(0));
 
 	$('.leftPlayer .name').html(getRelativePlayer(1));
