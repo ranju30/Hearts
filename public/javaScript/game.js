@@ -1,8 +1,8 @@
 var symbols = {spade:'♠', heart:'♥', diamond:'♦', club:'♣'};
-var playerTemplate = Handlebars.compile('<div class="name">{{name}}</div><div class="points">{{points}}</div>');
+var playerTemplate = Handlebars.compile('<div class="name">{{name}} ({{points}})</div>');
 var cardTemplate = Handlebars.compile('<td><div class="card {{suit}}" id="{{suit}} {{rank}}"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
 var boardTemplate = Handlebars.compile('<td><div class="{{suit}}" id="{{suit}} {{rank}}""><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
-
+var totalPointTemplate = Handlebars.compile('{{name}} : {{total}}')
 var gameStatusTime;
 
 var toCardHTML = function(card){
@@ -41,10 +41,17 @@ var updateBoard = function(data){
 	var getRelativePlayer = function(step){
 		return playerTemplate(data.players[(data.location+step)%4]);
 	};
+	var getTotalPoints = function(step){
+		return totalPointTemplate(data.players[(data.location+step)%4]);
+	}
 	$('.status').html(data.instruction);
+	$('.totalPoint .name1').html(getTotalPoints(0));
+	$('.totalPoint .name2').html(getTotalPoints(1));
+	$('.totalPoint .name3').html(getTotalPoints(2));
+	$('.totalPoint .name4').html(getTotalPoints(3));
 	$('.playerSelf .name').html(getRelativePlayer(0));
 
-	$('.leftPlayer').html(getRelativePlayer(1));
+	$('.leftPlayer .name').html(getRelativePlayer(1));
 
 	$('.oppositePlayer .name').html(getRelativePlayer(2));
 

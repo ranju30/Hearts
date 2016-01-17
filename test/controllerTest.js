@@ -163,4 +163,34 @@ describe('controller',function(){
 				})
 		});
 	});
+	describe('getGameOver',function(){
+		it('give the winner name if game is over',function(done){
+			request(handler)
+				.post('/login')
+				.send('userName=John')
+				.end(function(){
+					request(handler)
+						.post('/login')
+						.send('userName=Jill')
+						.end(function(){
+							request(handler)
+								.post('/login')
+								.send('userName=neil')
+								.end(function(){
+									request(handler)
+										.post('/login')
+										.send('userName=Johnie')
+										.end(function(){
+											request(handler)
+												.get('/gameOver')
+												.set('cookie',['userName=neil'])
+												.expect('')
+												.expect(200,done)
+										})
+								})
+						})
+				})
+
+		});
+	});
 });
