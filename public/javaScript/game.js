@@ -69,7 +69,7 @@ var checkGameStatus = function(){
 };
 var checkGameOver = function(){
 	$.getJSON('gameOver',finishGame);
-}
+};
 var getBoardStatus = function(data){
 	var cards = JSON.parse(data);
 	if(cards.length==0){
