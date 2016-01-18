@@ -60,3 +60,8 @@ td {
 	width: 60px;
 	height: 88px;
 }
+
+.status {
+	border-style: solid;
+	text-align: center;
+}
