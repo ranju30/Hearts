@@ -10,7 +10,7 @@
 <script type="text/javascript" src="javascript/handlebars.min-v4.0.5.js"></script>
 <script type="text/javascript" src="javascript/game.js"></script>
 
-<table class="board">
+<table class="board" rules="none">
 	<tr>
 		<td></td>
 		<td></td>
@@ -20,7 +20,7 @@
 			</div>
 		</td>
 		<td></td>
-		<td>
+		<td class="points">
 			<div class="totalPoint">Total Point
 				<div>--------------</div>
 				<div class="name1"></div>
@@ -43,7 +43,7 @@
 			</div>
 		</td>
 		<td></td>
-		<td>
+		<td id="playedCard">
 			<div class="playedCards">
 				<div class="card0"></div>
 				<div class="card1"></div>
@@ -58,7 +58,6 @@
 		</td>
 	</tr>
 	<tr>
-		<!-- <td><div class="action"><input type="button" value="Play" onclick="checkGameStatus()"></div></td> -->
 		<td></td>
 		<td></td>
 		<td><div class="status"></div></td>

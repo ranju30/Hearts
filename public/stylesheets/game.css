@@ -1,17 +1,28 @@
 td {
-	width: 305px;
-	height: 140px;
+	width: 228px;
+	height: 77px;
+	background-color: azure;
+	border-style: fill;
 }
 
 .playedCards {
 	float: left;
 	padding-bottom: 17%;
-    padding-right: 6%;
+    padding-right: 2%;
+    padding-left: 1%;
+	margin-top: 40px;
+    margin-left: 10px;
+}
+
+#playedCard{
+    background-color: paleturquoise;
+    border-radius: 15px;
 }
 
 .card {
-	width: 100px;
-	height: 140px;
+	background-color: white;
+	width: 70px;
+	height: 105px;
 	border-radius: 5px;
 	padding: 4px;
 	font-family: sans-serif;
@@ -34,34 +45,72 @@ td {
 }
 .playerSelf {
 	overflow: scroll;
+	text-transform: uppercase;
 }
 .hand {
 	width: 10px;
 	float: middle;
 	display: inline-block;
     white-space: nowrap;
+    background-color: azure;
 }
 .board {
 	margin: auto;
 	border-style: groove;
 }
 .oppositePlayer{
-	padding-left: 40px;
+/*	padding-left: 40px;
 	padding-bottom: 40px;
+*/	text-transform: uppercase;;
+	width: 170px;
+	background-color: cadetblue;
+	text-align: center;
+	height: 170px;
+	border-radius: 15px;
+	margin-left: 25px;
+}
+
+.leftPlayer{
+	text-transform: uppercase;;
+	width: 170px;
+	background-color: cadetblue;
+	text-align: center;
+	height: 170px;
+	border-radius: 15px;
+	/*margin-left: 25px;*/
 }
 
 .rightPlayer {
 	float: right;
+	text-transform: uppercase;;
+	width: 170px;
+	background-color: cadetblue;
+	text-align: center;
+	height: 170px;
+	border-radius: 15px;
+	margin-left: 25px;
+
 }
 
 .card0 ,.card1 ,.card2, .card3 {
 	border-style: groove;
 	float: left;
-	width: 60px;
-	height: 88px;
+	width: 45px;
+	height: 80px;
 }
 
 .status {
-	border-style: solid;
-	text-align: center;
+	font-size: 23px;
+    text-decoration: underline;
+    text-transform: capitalize;
+    /*text-indent: 65px;*/
+    text-align: center;
 }
+ .points{
+ 	background-color: paleturquoise;
+	border-radius: 15px;
+	text-align: center;
+	text-transform: capitalize; 
+ }
+
+
