@@ -7,6 +7,8 @@ var player2 = {name:'player2',
 				calculateTotalPoints:sinon.spy(),
 				getPoints:sinon.stub().returns(26),
 				throwACard:function(){},
+				addPassedCards:sinon.spy(),
+				removePassedCards:sinon.spy(),
 				getTotalPoints:sinon.stub().returns(40),
 				take:sinon.spy(),getHand:sinon.stub().returns([{suit:'heart',rank:'K'}])};
 
@@ -14,6 +16,8 @@ var players = [
 	{name:'player1',
 		calculatePoints:sinon.spy(),
 		calculateTotalPoints:sinon.spy(),
+		addPassedCards:sinon.spy(),
+		removePassedCards:sinon.spy(),
 		getPoints:function(){},
 		take:function(){},
 		getTotalPoints:sinon.stub().returns(7),
@@ -23,6 +27,8 @@ var players = [
 	{name:'player3',
 		calculatePoints:sinon.spy(),
 		calculateTotalPoints:sinon.spy(),
+		addPassedCards:sinon.spy(),
+		removePassedCards:sinon.spy(),
 		getPoints:function(){},
 		take:function(){},
 		getTotalPoints:sinon.stub().returns(70),
@@ -31,6 +37,8 @@ var players = [
 	{name:'player4',
 		calculatePoints:sinon.spy(),
 		calculateTotalPoints:sinon.spy(),
+		addPassedCards:sinon.spy(),
+		removePassedCards:sinon.spy(),
 		getPoints:function(){},
 		take:function(){},
 		throwACard:function(){},
@@ -54,7 +62,7 @@ describe('game',function(){
 			var game = new Game();
 			players.forEach(function(p){game.join(p)});
 			var status = game.getStatus('player2');
-			assert.equal("player1's turn",status.instruction);
+			assert.equal("Pass 3 cards and wait!!",status.instruction);
 			assert.equal(1,status.location);
 		});
 	});
@@ -232,6 +240,16 @@ describe('game',function(){
 			game.addTotalPoints();
 			assert.equal(players[3].calculateTotalPoints.callCount,3);
 			assert.equal(players[3].calculatePoints.callCount,5);
+		});
+	});
+	describe('passCardsToPlayer',function(){
+		it('it calls relevant function for fixed time',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			var detail = [{name:'player1',cards:[]},{name:'player2',cards:[]}]
+			game.passCardsToPlayer(detail);
+			assert.equal(players[0].removePassedCards.callOnce);
+			assert.equal(players[0].addPassedCards.callOnce);
 		});
 	});
 });

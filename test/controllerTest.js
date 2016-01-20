@@ -98,7 +98,7 @@ describe('controller',function(){
 											request(handler)
 												.post('/gameStatus')
 												.set('cookie',['userName=Jill'])
-												.expect(/turn/)
+												.expect(/Pass 3 cards and wait!!/)
 												.expect(200,done)
 										})
 								})
@@ -186,6 +186,34 @@ describe('controller',function(){
 												.set('cookie',['userName=neil'])
 												.expect('')
 												.expect(200,done)
+										})
+								})
+						})
+				})
+
+		});
+	});
+	describe('cardToBePassed',function(){
+		it('calls player if all 4 player passed cards',function(done){
+			request(handler)
+				.post('/login')
+				.send('userName=John')
+				.end(function(){
+					request(handler)
+						.post('/login')
+						.send('userName=Jill')
+						.end(function(){
+							request(handler)
+								.post('/login')
+								.send('userName=neil')
+								.end(function(){
+									request(handler)
+										.post('/login')
+										.send('userName=Johnie')
+										.end(function(){
+											request(handler)
+												.post('/selectCardToPass')
+												.expect(302,done)
 										})
 								})
 						})

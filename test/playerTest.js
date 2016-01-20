@@ -64,4 +64,32 @@ describe('Player',function(){
 			
 		});
 	});
+	describe('removePassedCards',function(){
+		it('removes the cards from hand',function(){
+			var player = new Player();
+			var card1 = {suit:'spade',rank:'A',getInfo:sinon.stub().returns({suit:'spade',rank:'A'})};
+			player.take(card1);
+			var card2 = {suit:'heart',rank:'10',getInfo:sinon.stub().returns({suit:'heart',rank:'10'})};
+			player.take(card2);
+			var card3 = {suit:'diamond',rank:'6',getInfo:sinon.stub().returns({suit:'diamond',rank:'6'})};
+			player.take(card3);
+			var card4 = {suit:'club',rank:'7',getInfo:sinon.stub().returns({suit:'club',rank:'7'})};
+			player.take(card4);
+			player.removePassedCards([card1,card2,card3]);
+			assert.deepEqual(player.getHand(),[{suit:'club',rank:'7'}]);
+		});
+	});
+	describe('addPassedCards',function(){
+		it('removes the cards from hand',function(){
+			var player = new Player();
+			var card1 = {suit:'spade',rank:'A',getInfo:sinon.stub().returns({suit:'spade',rank:'A'})};
+			player.take(card1);
+			var card2 = {suit:'heart',rank:'10',getInfo:sinon.stub().returns({suit:'heart',rank:'10'})};
+			var card3 = {suit:'diamond',rank:'6',getInfo:sinon.stub().returns({suit:'diamond',rank:'6'})};
+			var card4 = {suit:'club',rank:'7',getInfo:sinon.stub().returns({suit:'club',rank:'7'})};
+			assert.deepEqual(player.getHand(),[{suit:'spade',rank:'A'}]);
+			player.addPassedCards([card4,card2,card3]);
+			assert.deepEqual(player.getHand(),[{suit:'club',rank:'7'},{suit:'diamond',rank:'6'},{suit:'spade',rank:'A'},{suit:'heart',rank:'10'}]);
+		});
+	});
 });
