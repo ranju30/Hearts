@@ -111,8 +111,14 @@ var timer = function(){
 };
 
 var onPageReady = function(){
+	$.getJSON('gameStatus',function(data){
+		if(data.passed){
+			$('#pass').hide();
+			timer();
+		}
+	});
 	checkGameStatus();
-	updateRound();
+	$('#pass').click(passCards);
 };
 
 $(document).ready(onPageReady);
