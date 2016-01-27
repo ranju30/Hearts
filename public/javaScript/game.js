@@ -111,14 +111,16 @@ var timer = function(){
 };
 
 var onPageReady = function(){
-	$.getJSON('gameStatus',function(data){
-		if(data.passed){
-			$('#pass').hide();
-			timer();
-		}
-	});
-	checkGameStatus();
-	$('#pass').click(passCards);
+	// $.getJSON('gameStatus',function(data){
+	// 	if(data.passed){
+	// 		$('#pass').hide();
+	// 		timer();
+	// 	}
+	// });
+	// checkGameStatus();
+	// $('#pass').click(passCards);
+	timer();
+	$('.action').hide();	
 };
 
 $(document).ready(onPageReady);
