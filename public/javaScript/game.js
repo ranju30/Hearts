@@ -33,8 +33,8 @@ var passCards = function(){
 		selectedCards.push(secondCard);
 		var thirdCard = convertToValueObject($('.select')[2].id);
 		selectedCards.push(thirdCard);
-		$.post('selectCardToPass','cards='+JSON.stringify(selectedCards));
 		gameStatusTime = timer(); 
+		$.post('selectCardToPass','cards='+JSON.stringify(selectedCards));
 	}
 };
 
@@ -55,7 +55,7 @@ var updateBoard = function(data){
 	};
 	var getTotalPoints = function(step){
 		return totalPointTemplate(data.players[(data.location+step)%4]);
-	}
+	};
 	$('.status').html(data.instruction);
 	if(data.players.length == 4){
 		$('.totalPoint .name1').html(getTotalPoints(0));
@@ -68,10 +68,12 @@ var updateBoard = function(data){
 	$('.leftPlayer .name').html(getRelativePlayer(1));
 	$('.oppositePlayer .name').html(getRelativePlayer(2));
 	$('.rightPlayer .name').html(getRelativePlayer(3));
-
 	$('.playerSelf .hand').html(generateHand(data.hand));
-	
 	bindEvents();
+	if(data.hand.length == 13 && !data.players[data.location].pass){
+		clearInterval(gameStatusTime);
+		$('#pass').show();
+	}
 };
 var finishGame = function(data){
 	console.log(data.winner)
@@ -104,10 +106,11 @@ var updateRound = function(){
 };
 
 var timer = function(){
-	setInterval(function(){
+	var allTime = setInterval(function(){
 		checkGameStatus();
 		updateRound();
 	},1500);
+	return allTime;
 };
 
 var onPageReady = function(){
@@ -117,7 +120,7 @@ var onPageReady = function(){
 			timer();
 		}
 	});
-	checkGameStatus();
+	gameStatusTime = timer();
 	$('#pass').click(passCards);
 };
 

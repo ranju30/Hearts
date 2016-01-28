@@ -54,7 +54,7 @@ describe('game',function(){
 			game.join(player1);
 			var status = game.getStatus('player1');
 			assert.equal('Waiting for 3 players',status.instruction);
-			assert.deepEqual([{name:'player1',points:player1.getPoints(),total:player1.getTotalPoints()}],status.players);
+			assert.deepEqual([{name:'player1',pass:undefined,points:player1.getPoints(),total:player1.getTotalPoints()}],status.players);
 			assert.equal('ola',status.hand);
 			assert.equal(0,status.location);
 		});
