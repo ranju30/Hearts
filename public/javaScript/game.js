@@ -72,7 +72,7 @@ var updateBoard = function(data){
 	bindEvents();
 	if(data.hand.length == 13 && !data.players[data.location].pass){
 		clearInterval(gameStatusTime);
-		$('#pass').show();
+		$('.action').show();
 	}
 };
 var finishGame = function(data){
@@ -116,8 +116,8 @@ var timer = function(){
 var onPageReady = function(){
 	$.getJSON('gameStatus',function(data){
 		if(data.passed){
-			$('#pass').hide();
-			timer();
+			$('.action').hide();
+			gameStatusTime = timer();
 		}
 	});
 	gameStatusTime = timer();
