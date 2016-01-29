@@ -64,10 +64,8 @@ table {
 	border-style: groove;
 	table-layout: fixed;
 }
-.oppositePlayer{
-/*	padding-left: 40px;
-	padding-bottom: 40px;
-*/	text-transform: uppercase;;
+.oppositePlayer {
+	text-transform: uppercase;;
 	width: 170px;
 	background-color: cadetblue;
 	text-align: center;
@@ -89,7 +87,6 @@ table {
 	text-transform: uppercase;;
 	text-align: center;
 	background-color: cadetblue;
-	/*margin-left: 25px;*/
 }
 
 .rightPlayer {
@@ -117,7 +114,6 @@ table {
 	font-size: 23px;
     text-decoration: underline;
     text-transform: capitalize;
-    /*text-indent: 65px;*/
     text-align: center;
     font-family: monospace;
 }
@@ -137,4 +133,3 @@ table {
 .gamepage {
 	background-color:white;
 }
-
