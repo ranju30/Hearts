@@ -1,0 +1,16 @@
+.login {
+	margin: auto;
+    width: 13%;
+    border-style: groove;
+	border-radius: 10px;
+	padding: 42px;
+    border: 3px solid grey;
+    padding: 50px;
+    background-color: lightgrey;
+    /*display: inline-block;*/
+}
+
+
+input {
+	width: 70%;
+}

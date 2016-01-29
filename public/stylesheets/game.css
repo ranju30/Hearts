@@ -4,6 +4,10 @@ td {
 	background-color: azure;
 	border-style: fill;
 }
+table {
+	table-layout: fixed;
+	height: 130px;
+}
 
 .playedCards {
 	float: left;
@@ -50,7 +54,6 @@ td {
 	text-transform: uppercase;
 }
 .hand {
-	width: 10px;
 	float: middle;
 	display: inline-block;
     white-space: nowrap;
@@ -59,6 +62,7 @@ td {
 .board {
 	margin: auto;
 	border-style: groove;
+	table-layout: fixed;
 }
 .oppositePlayer{
 /*	padding-left: 40px;
@@ -72,6 +76,7 @@ td {
 	height: 170px;
 	border-radius: 15px;
 	margin-left: 25px;
+	position: 100px;
 }
 
 .leftPlayer{
@@ -130,6 +135,6 @@ td {
 }
 
 .gamepage {
-	background-color:gray;
+	background-color:white;
 }
 

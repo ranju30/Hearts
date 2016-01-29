@@ -2,15 +2,18 @@
 <html>
 <head>
 	<title>Login Page</title>
+	<link rel="stylesheet" href="stylesheets/login.css">
 </head>
 <body>
-	<script type="text/javascript" src="javascript/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="javascript/login.js"></script>
-	<h1>Welcome to Hearts Game</h1>
-	<form method="POST" action="login">
-		Name:<input type="text" name="userName">
-		<button  type="submit" >Login</button>
-	</form>
-	For instructions <a href="instruction.html" >click here</a>
+	<script type="text/javascript" src="javaScript/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="javaScript/login.js"></script>
+	<h1 align="center">Hearts Game</h1>
+		<div class="login">
+			<form method="POST" action="login">
+				<input type="text" name="userName" placeholder="Enter your name..." required>
+				<button type="submit">Join</button>
+			</form><br>
+			<a href="instruction.html" >Instructions</a>
+		</div>
 	</body>
 </html>
