@@ -5,8 +5,12 @@ td {
 	border-style: fill;
 }
 table {
-	table-layout: fixed;
+	/*table-layout: fixed;*/
 	height: 130px;
+}
+
+.image {
+	padding-top: 10px;
 }
 
 .playedCards {
@@ -54,6 +58,7 @@ table {
 	text-transform: uppercase;
 }
 .hand {
+	width:10px;
 	float: middle;
 	display: inline-block;
     white-space: nowrap;
@@ -61,8 +66,7 @@ table {
 }
 .board {
 	margin: auto;
-	border-style: groove;
-	table-layout: fixed;
+	/*border-style: groove;*/
 }
 .oppositePlayer {
 	text-transform: uppercase;;
@@ -74,7 +78,6 @@ table {
 	height: 170px;
 	border-radius: 15px;
 	margin-left: 25px;
-	position: 100px;
 }
 
 .leftPlayer{
@@ -104,7 +107,7 @@ table {
 }
 
 .card0 ,.card1 ,.card2, .card3 {
-	border-style: groove;
+	/*border-style: groove;*/
 	float: left;
 	width: 45px;
 	height: 80px;
@@ -132,4 +135,8 @@ table {
 
 .gamepage {
 	background-color:white;
+}
+
+.name {
+
 }

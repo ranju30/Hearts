@@ -1,7 +1,7 @@
 var symbols = {spade:'♠', heart:'♥', diamond:'♦', club:'♣'};
 var playerTemplate = Handlebars.compile('<div class="name">{{name}} ({{points}})</div>');
 var cardTemplate = Handlebars.compile('<td><div class="card {{suit}}" id="{{suit}} {{rank}}"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
-var boardTemplate = Handlebars.compile('<td><div class="{{suit}}" id="{{suit}} {{rank}}""><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
+var boardTemplate = Handlebars.compile('<td><div class="{{suit}}" id="{{suit}} {{rank}}" style="display:inline-block;border:groove;height:72px;width:43px;"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
 var totalPointTemplate = Handlebars.compile('{{name}} : {{total}}')
 var gameStatusTime;
 
