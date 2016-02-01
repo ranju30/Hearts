@@ -75,10 +75,12 @@ var updateBoard = function(data){
 		$('.action').show();
 	}
 };
+
 var finishGame = function(data){
 	console.log(data.winner)
 	if(data.winner){
 		$('.status').html(data.winner);
+		$.get('endGame');
 		clearInterval(gameStatusTime);
 	}
 };
