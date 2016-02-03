@@ -1,8 +1,9 @@
 var symbols = {spade:'♠', heart:'♥', diamond:'♦', club:'♣'};
 var playerTemplate = Handlebars.compile('<div class="name">{{name}} ({{points}})</div>');
 var cardTemplate = Handlebars.compile('<td><div class="card {{suit}}" id="{{suit}} {{rank}}"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
-var boardTemplate = Handlebars.compile('<td><div class="{{suit}}" id="{{suit}} {{rank}}" style="display:inline-block;border:groove;height:72px;width:43px;"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
-var totalPointTemplate = Handlebars.compile('{{name}} : {{total}}')
+var boardTemplate = Handlebars.compile('<td><div class="{{suit}}" id="{{suit}} {{rank}}" style="display:inline-block;border:groove;height:120px;width:77px;background-color:white;"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
+var totalPointTemplate = Handlebars.compile('<td>{{name}}</td><td>{{total}}</td>');
+// var totalPointTemplate = Handlebars.compile('{{name}}');
 var gameStatusTime;
 
 var toCardHTML = function(card){
@@ -84,6 +85,12 @@ var finishGame = function(data){
 		clearInterval(gameStatusTime);
 	}
 };
+
+var logOut = function(){
+	$.get('logout');
+	window.location.assign("login.html");
+	
+}
 var checkGameStatus = function(){
 	$.getJSON('gameStatus',updateBoard)
 };
@@ -124,6 +131,7 @@ var onPageReady = function(){
 	});
 	gameStatusTime = timer();
 	$('#pass').click(passCards);
+	// $('#logout').click(logOut);
 };
 
 $(document).ready(onPageReady);

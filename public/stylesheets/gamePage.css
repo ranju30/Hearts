@@ -1,0 +1,173 @@
+h2 {
+	margin: auto;
+	font-family: sans-serif;
+	/*position: relative;*/
+}
+
+.card {
+	background-color: white;
+	width: 81px;
+	height: 133px;
+	border-radius: 5px;
+	padding: 4px;
+	font-family: sans-serif;
+	font-size: 15px;
+	border-style: groove;
+
+}
+.spade,.club {
+	color: black;
+	font-size: 20px;
+}
+
+.diamond,.heart {
+	color: red;
+	font-size: 20px;
+}
+
+.select {
+	background-color: rgb(230,230,230);
+}
+
+.action {
+	font-family: sans-serif;
+	font-size: 20px;
+}
+
+.card0 ,.card1 ,.card2, .card3 {
+	/*border-style: groove;*/
+	/*margin: 2px;*/
+	float: left;
+	margin-bottom:2px; 
+	width: 50px;
+	height: 80px;
+}
+
+.gamepage {
+	margin: auto;
+	width:1300px;
+	height:600px;
+	background-color: azure;
+}
+
+.red_heart {
+	color:red;
+	padding: 1px;
+	font-family: cursive;
+	font-weight: 800;
+}
+
+.oppositePlayer {
+	text-transform: uppercase;
+	position: absolute;
+	left: 615px;
+	width: 212px;
+	height: 120px;
+	background-color: cadetblue;
+	text-align: center;
+	font-size: 20px;
+	color: azure;
+	/*margin-top: 20px;*/
+	/*border-radius: 100%;*/
+}
+
+.horizontalOppositePlayers {
+	position: absolute;
+	height: 200px;
+	width: 1300px;
+	top:220px;
+}
+
+.horizontalOppositePlayers .rightPlayer,.leftPlayer{
+	display: inline;
+	height: 200px;
+	width: 120px;
+	background-color: cadetblue;
+	text-transform: uppercase;
+	font-size: 20px;
+	color: azure;
+	/*border-radius: 20%;*/
+}
+
+.rightPlayer{
+	float: right;
+}
+
+.leftPlayer{
+	float: left;
+}
+
+.totalPoint{
+	position: relative;
+	background-color: paleturquoise;
+	height: 140px;
+	width: 235px;
+	float: right;
+}
+
+.points {
+	margin: 5px;
+	width: 225px;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+.points th{
+	font-size: 15px;
+	font-weight: normal;
+	color: #039;
+	/*padding: 10px 8px;*/
+	border-bottom:2px solid #6678B1;
+}
+
+.points td{
+	/*color:#6678B1;*/
+	border-top:1px solid #6678B1;
+	padding: 9px 8px 0px 8px;
+	text-align: left;
+}
+
+.playedCardsBoard {
+	height: 200px;
+	width: 440px;
+	background-color: paleturquoise;
+	position: absolute;
+	left: 500px;
+	top: 200px;
+	border-radius: 100%;
+}
+
+.playedCards {
+	float: left;
+	padding-bottom: 17%;
+    padding-right: 2%;
+    padding-left: 1%;
+	margin-top: 35px;
+    margin-left: 90px;
+}
+
+.status {
+	height: 40px;
+	width: 439px;
+	background-color: paleturquoise;
+	position: absolute;
+	top: 415px;
+	left: 500px;
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 20px;
+	line-height: 40px;
+}
+
+.playerSelf {
+	width: 1300px;
+	height: 195px;
+	font-family: monospace;
+	font-size: 20px;
+	text-transform: uppercase;
+	background-color: paleturquoise;
+	position: absolute;
+	top: 470px;
+}
+
+

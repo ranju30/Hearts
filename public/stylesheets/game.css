@@ -103,7 +103,6 @@ table {
 	height: 170px;
 	border-radius: 15px;
 	margin-left: 25px;
-
 }
 
 .card0 ,.card1 ,.card2, .card3 {
@@ -137,6 +136,6 @@ table {
 	background-color:white;
 }
 
-.name {
-
+.logout {
+	float: right;;
 }
