@@ -71,7 +71,7 @@ var updateBoard = function(data){
 	$('.rightPlayer .name').html(getRelativePlayer(3));
 	$('.playerSelf .hand').html(generateHand(data.hand));
 	bindEvents();
-	if(data.hand.length == 13 && !data.players[data.location].pass){
+	if(data.hand.length == 13 && !data.players[data.location].pass && data.round%4 != 0){
 		clearInterval(gameStatusTime);
 		$('.action').show();
 	}
