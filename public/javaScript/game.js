@@ -123,7 +123,9 @@ var timer = function(){
 };
 
 var onPageReady = function(){
+	$('.action').hide();
 	$.getJSON('gameStatus',function(data){
+		console.log(data);
 		if(data.passed){
 			$('.action').hide();
 			gameStatusTime = timer();
@@ -131,6 +133,7 @@ var onPageReady = function(){
 	});
 	gameStatusTime = timer();
 	$('#pass').click(passCards);
+
 	// $('#logout').click(logOut);
 };
 

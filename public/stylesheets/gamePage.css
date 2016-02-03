@@ -1,7 +1,19 @@
 h2 {
 	margin: auto;
 	font-family: sans-serif;
-	/*position: relative;*/
+	display: inline-block;
+	text-align: center;
+}
+.logo{
+	display: inline-block;
+	position: relative;
+	left: 47%;
+}
+.image {
+	display: inline-block;
+	position: absolute;
+	left: 93%;
+	cursor: pointer;
 }
 
 .card {
@@ -32,11 +44,20 @@ h2 {
 .action {
 	font-family: sans-serif;
 	font-size: 20px;
+	position: absolute;
+	left: 790px;
+	top: 420px;
+	z-index: 1;
+}
+
+input {
+	color:black;
+	text-align: center;
+	font-size: 25px;
+	cursor: pointer;
 }
 
 .card0 ,.card1 ,.card2, .card3 {
-	/*border-style: groove;*/
-	/*margin: 2px;*/
 	float: left;
 	margin-bottom:2px; 
 	width: 50px;
@@ -53,7 +74,6 @@ h2 {
 .red_heart {
 	color:red;
 	padding: 1px;
-	font-family: cursive;
 	font-weight: 800;
 }
 
@@ -67,8 +87,10 @@ h2 {
 	text-align: center;
 	font-size: 20px;
 	color: azure;
-	/*margin-top: 20px;*/
-	/*border-radius: 100%;*/
+}
+
+.oppositePlayer .name{
+	padding-top: 10%;
 }
 
 .horizontalOppositePlayers {
@@ -86,7 +108,7 @@ h2 {
 	text-transform: uppercase;
 	font-size: 20px;
 	color: azure;
-	/*border-radius: 20%;*/
+	text-align: center;
 }
 
 .rightPlayer{
@@ -95,6 +117,10 @@ h2 {
 
 .leftPlayer{
 	float: left;
+}
+
+.leftPlayer .name,.rightPlayer .name{
+	padding-top: 35%;
 }
 
 .totalPoint{
@@ -116,12 +142,10 @@ h2 {
 	font-size: 15px;
 	font-weight: normal;
 	color: #039;
-	/*padding: 10px 8px;*/
 	border-bottom:2px solid #6678B1;
 }
 
 .points td{
-	/*color:#6678B1;*/
 	border-top:1px solid #6678B1;
 	padding: 9px 8px 0px 8px;
 	text-align: left;
