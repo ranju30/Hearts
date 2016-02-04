@@ -3,8 +3,7 @@ var playerTemplate = Handlebars.compile('<div class="name">{{name}} ({{points}})
 var cardTemplate = Handlebars.compile('<td><div class="card {{suit}}" id="{{suit}} {{rank}}"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
 var boardTemplate = Handlebars.compile('<td><div class="{{suit}}" id="{{suit}} {{rank}}" style="display:inline-block;border:groove;height:120px;width:77px;background-color:white;"><div>{{rank}}</div><div>{{symbol}}</div></div></td>');
 var totalPointTemplate = Handlebars.compile('<td>{{name}}</td><td>{{total}}</td>');
-// var totalPointTemplate = Handlebars.compile('{{name}}');
-var gameStatusTime;
+var gameStatusTime,pass = false;
 
 var toCardHTML = function(card){
 	card.symbol = symbols[card.suit];
@@ -26,6 +25,7 @@ var convertToValueObject = function(cardID){
 };
 var passCards = function(){
 	if($('.select').length == 3){
+		pass = true;
 		$('.action').hide();
 		var selectedCards = [];
 		var firstCard = convertToValueObject($('.select')[0].id);
@@ -44,7 +44,13 @@ var toggleSelection = function(){
 	if($('.select').length==1){
 		var selectedCard = convertToValueObject($('.select')[0].id);
 		$.post('startGame',selectedCard);
-	};
+	}
+	else if($('.select').length==3 && !pass){
+		$('.action').show();
+	}
+	else{
+		$('.action').hide();
+	}
 };
 var bindEvents = function(){
 	$('.card').click(toggleSelection);
@@ -71,9 +77,9 @@ var updateBoard = function(data){
 	$('.rightPlayer .name').html(getRelativePlayer(3));
 	$('.playerSelf .hand').html(generateHand(data.hand));
 	bindEvents();
-	if(data.hand.length == 13 && !data.players[data.location].pass){
+	if(data.hand.length >= 13 && !data.players[data.location].pass && data.round%4 != 0){
+		pass = false;
 		clearInterval(gameStatusTime);
-		$('.action').show();
 	}
 };
 
@@ -125,7 +131,6 @@ var timer = function(){
 var onPageReady = function(){
 	$('.action').hide();
 	$.getJSON('gameStatus',function(data){
-		console.log(data);
 		if(data.passed){
 			$('.action').hide();
 			gameStatusTime = timer();
@@ -133,8 +138,6 @@ var onPageReady = function(){
 	});
 	gameStatusTime = timer();
 	$('#pass').click(passCards);
-
-	// $('#logout').click(logOut);
 };
 
 $(document).ready(onPageReady);

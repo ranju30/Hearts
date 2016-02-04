@@ -62,7 +62,7 @@ describe('game',function(){
 			var game = new Game();
 			players.forEach(function(p){game.join(p)});
 			var status = game.getStatus('player2');
-			assert.equal("Pass 3 cards and wait!!",status.instruction);
+			assert.equal("Select 3 Cards and pass to player3",status.instruction);
 			assert.equal(1,status.location);
 		});
 	});

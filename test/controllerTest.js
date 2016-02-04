@@ -48,7 +48,7 @@ describe('controller',function(){
 	// 			.expect('set-cookie',"userName=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT",done)
 	// 	})
 	// }),
-	describe('game.html',function(){
+	describe('gamePage.html',function(){
 		it('should redirect to login.html if player is not logged in',function(done){
 			request(handler)
 				.get('/gamePage.html')
@@ -58,9 +58,9 @@ describe('controller',function(){
 		})
 		it('should take player to game page if logged in',function(done){
 			request(handler)
-				.get('/game.html')
+				.get('/gamePage.html')
 				.set('Cookie', ['userName=Jack'])
-				.expect(/Hearts/)
+				.expect(/gamePage/)
 				.expect(200,done)
 		})
 	}),
@@ -98,7 +98,7 @@ describe('controller',function(){
 											request(handler)
 												.post('/gameStatus')
 												.set('cookie',['userName=Jill'])
-												.expect(/Pass 3 cards and wait!!/)
+												.expect(/"Select 3 Cards and pass to neil"/)
 												.expect(200,done)
 										})
 								})
