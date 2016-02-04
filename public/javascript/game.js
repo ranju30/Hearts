@@ -86,9 +86,8 @@ var updateBoard = function(data){
 var finishGame = function(data){
 	console.log(data.winner)
 	if(data.winner){
-		$('.status').html(data.winner);
 		$.get('endGame');
-		clearInterval(gameStatusTime);
+		window.location.assign("gameOver.html");
 	}
 };
 
@@ -137,6 +136,12 @@ var onPageReady = function(){
 		}
 	});
 	gameStatusTime = timer();
+	$.getJSON('gameOver', function(data){
+		if(data.winner){
+			$('.result').html(data.winner);
+			clearInterval(gameStatusTime);
+		}
+	})
 	$('#pass').click(passCards);
 };
 
