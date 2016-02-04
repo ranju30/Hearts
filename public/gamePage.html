@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
@@ -9,8 +9,16 @@
 	<script type="text/javascript" src="javascript/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="javascript/handlebars.min-v4.0.5.js"></script>
 	<script type="text/javascript" src="javascript/game.js"></script>
-	<header>
-		<div class="logo"><h2>He<span class="red_heart">♥</span>rts</h2></div>
+	<header class="header">
+		<div class="logo"><h2>He<span class="red_heart_logo">♥</span>rts</h2></div>
+		<div class="dropdown">
+			<button disabled class="red_heart"><span>♥</span></button>
+			 <div class="dropdown-content">
+			   <a href="https://github.com/ranju30/Hearts.git" target="_blank"><img src="images/git.png" height="25px" width="25px"></a>
+			   <a href="#about">Instructions</a>
+			   <a href="#contact">Issues</a>
+			 </div>
+		</div>
 		<div class="image"><img src="images/logout.png" height="20px" width="20px" onclick="logOut()"></div>
 	</header>
 	<hr>
@@ -35,14 +43,14 @@
 			</table>
 			
 		</div>
-		<div class="horizontalOppositePlayers">
+		<!-- <div class="horizontalOppositePlayers"> -->
 			<div class="leftPlayer">
 				<div class="name"></div>
 			</div>
 			<div class="rightPlayer">
 				<div class="name"></div>
 			</div>
-		</div>
+		<!-- </div> -->
 		<div class="playedCardsBoard">
 			<div class="playedCards">
 				<div class="card0"></div>
@@ -55,7 +63,7 @@
 		<div class="status"></div>
 		<div class="playerSelf">
 			<div class="name"></div>
-			<table><tr class="hand"></tr></table>
+			<table  class="hand"><tr></tr></table>
 		</div>
 	</div>
 </body>
