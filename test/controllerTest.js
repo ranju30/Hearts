@@ -39,15 +39,15 @@ describe('controller',function(){
 			})
 		})
 	}),
-	// describe('logout',function(){
-	// 	it('should reset cookies and redirect to login.html',function(done){
-	// 		request(handler)
-	// 			.get('/logout')
-	// 			.expect(302)
-	// 			.expect('Location','login.html')
-	// 			.expect('set-cookie',"userName=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT",done)
-	// 	})
-	// }),
+	describe('logout',function(){
+		it('should reset cookies and redirect to login.html',function(done){
+			request(handler)
+				.get('/logout')
+				.expect(302)
+				.expect('Location','login.html')
+				.expect('set-cookie',"userName=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT",done)
+		})
+	}),
 	describe('gamePage.html',function(){
 		it('should redirect to login.html if player is not logged in',function(done){
 			request(handler)
