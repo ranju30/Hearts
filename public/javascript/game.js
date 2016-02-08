@@ -84,7 +84,6 @@ var updateBoard = function(data){
 };
 
 var finishGame = function(data){
-	console.log(data.winner)
 	if(data.winner){
 		$.get('endGame');
 		window.location.assign("gameOver.html");
