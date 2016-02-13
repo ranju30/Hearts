@@ -1,5 +1,5 @@
 .gamepage {
-	background-color: azure;
+	/*background-color: azure;*/
 	position: absolute;
 	left: 5%;	
 	margin: auto;
@@ -22,8 +22,8 @@ h2 {
 .logo{
 	display: inline-block;
 	position: absolute;
-	margin-top: -3.5%;
-	left: 5%;
+	margin-top: -4.5%;
+	left: 9.5%;
 }
 
 .image {
@@ -39,22 +39,21 @@ a{
 	text-decoration: none;
 }
 
-.red_heart_logo{
+/*.red_heart_logo{
 	color: red;
-}
+}*/
 /*----------------------------------------button-----------------------------------------------------*/
 .action {
 	font-family: sans-serif;
 	position: absolute;
 	left: 47%;
-	top: 64%;
+	top: 40%;
 	z-index: 1;	
 }
 
 input {
 	color:black;
-	text-align: center;
-	font-size: 1.2vw;
+	font-size: 1.5vw;
 	cursor: pointer;
 }
 
@@ -133,13 +132,13 @@ input {
 /*---------------------------------------------cardsPlayedOnBoard-------------------------------------*/
 
 .playedCardsBoard {
-	height: 30%;
-	width: 35%;
+	height: 35%;
+	width: 40%;
 	background-color: paleturquoise;
 	position: absolute;
-	left: 32%;
-	top: 28%;
-	border-radius: 80%;
+	left: 29%;
+	top: 25%;
+	border-radius: 50%;
 }
 
 .playedCards {
@@ -160,10 +159,9 @@ input {
 .status {
 	height: 5%;
 	width: 30.5%;
-	background-color: paleturquoise;
 	position: absolute;
-	top: 58%;
-	left: 34.75%;
+	top: 60%;
+	left: 34.50%;
 	text-align: center;
 	text-transform: capitalize;
 	font-size: 1.4vw;
@@ -218,9 +216,8 @@ input {
 /*------------------------------------------------dropDown menu------------------------------------------------------*/
 .red_heart {
 	background-color: white;
-	padding: 1%;
 	font-size: 2vw;
-	color: red;
+	color: black;
 	border: none;
 	cursor: pointer;
 	display: inline-block;
@@ -229,7 +226,7 @@ input {
 .dropdown {
 	margin-top: -2.8%;
 	position: absolute;
-	right: 13%;
+	left: 9.5%;
 	display: inline-block;
 	z-index: 1;
 }
@@ -238,16 +235,20 @@ input {
    display: none;
    position: absolute;
    background-color: white;
-   min-width: 550%;
-   overflow: auto;
-   box-shadow: 0% 8% 16% 0% rgba(0,0,0,0.2);
+   /*overflow: auto;*/
+   min-width: 100%;
+   box-shadow: 10px 10px 10px #888888;
 }
 
 .dropdown-content a {
    color: black;
-   padding: 12% 16%;
+   padding: 12% 20%;
    text-decoration: none;
    display: block;
+}
+
+.logo_heart{
+	color: red;
 }
 
 .dropdown-content a:hover {background-color: #f1f1f1}
