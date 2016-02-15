@@ -200,7 +200,7 @@ describe('game',function(){
 		it('returns the player name who has the less points',function(){
 			var game = new Game();
 			players.forEach(function(p){game.join(p)});
-			assert.deepEqual({winner:'Game Over. Winner is : player1'},game.getWinner());
+			assert.deepEqual({winner:'Winner is : player1'},game.getWinner());
 		});
 	});
 	describe('isMoonShoot',function(){
