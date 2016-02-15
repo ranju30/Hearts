@@ -16,10 +16,15 @@ input {
 }
 
 button {
-	height: 25px;
-    width: 65px;
-    font-size: 17px;
-    font-family: helvetica;
+    border: none;
+    color: white;
+    cursor: pointer;
+    background-color:#e2e2e2; 
+}
+
+img{
+	height:50px;
+	width:310px;
 }
 
 h1 {
