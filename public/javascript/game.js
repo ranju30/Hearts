@@ -90,6 +90,20 @@ var updateBoard = function(data){
 	}
 };
 
+var finishGame = function(data){
+	console.log(data.winner)
+	if(data.winner){
+		$.get('endGame');
+		window.location.assign("gameOver.html");
+	}
+};
+
+var logOut = function(){
+	$.get('logout');
+	window.location.assign("login.html");
+	
+}
+
 var checkGameStatus = function(){
 	$.getJSON('gameStatus',updateBoard)
 };
