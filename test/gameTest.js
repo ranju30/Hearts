@@ -2,6 +2,7 @@ var assert = require('chai').assert;
 var sinon = require('sinon');
 var _ = require('lodash');
 var Game = require('../lib/game');
+var playerWithHeart;
 var player2 = {name:'player2',
 				calculatePoints:sinon.spy(),
 				calculateTotalPoints:sinon.spy(),
@@ -200,7 +201,7 @@ describe('game',function(){
 		it('returns the player name who has the less points',function(){
 			var game = new Game();
 			players.forEach(function(p){game.join(p)});
-			assert.deepEqual([{player:"player1",points:7},{player:"player2",points:40},{player:"player3",points:70},{player:"player4",points:90}],game.getWinner());
+			assert.deepEqual({winner:'Winner is : player1'},game.getWinner());
 		});
 	});
 	describe('isMoonShoot',function(){
@@ -252,5 +253,36 @@ describe('game',function(){
 			assert.equal(players[0].addPassedCards.callOnce);
 		});
 	});
+	describe("firstStepAndHeartValidator",function(){
+		it('should validate a card for step one',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			assert.ok(game.firstStepAndHeart({suit:'heart'}));
+		});
+	})
+	describe("isAbleToPlayHeart",function(){
+		it('should validate a card for a heart card',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			assert.ok(game.isAbleToPlayHeart(player2.name));
+		});
+	})
+	describe("isValidateForStepAboveOne",function(){
+		it('should validate a card for steps more than one',function(){
+			var game = new Game();
+			players.forEach(function(p){game.join(p)});
+			assert.ok(game.isAbleToPlayHeart(player2.name));
+		});
+	});
+	
+	/*have to increase step to test this method*/
+	
+	// describe("isValidForStepAboveOneAndCurrentSuit",function(){
+	// 	it("should validate a card for step above one",function(){
+	// 		var game = new Game();
+	// 		players.forEach(function(p){game.join(p)});
+	// 		assert.ok(game.isValidForStepAboveOneAndCurrentSuit(players[1]));
+	// 	})
+	// })
 });
 

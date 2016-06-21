@@ -10,12 +10,6 @@ var toCardHTML = function(card){
 	return cardTemplate(card);
 };
 
-var logOut = function(){
-	document.cookie = "userName=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
-	console.log(document.cookie);
-	window.location = "login.html";
-};
-
 var generateHand = function(hand){
 	return hand.map(toCardHTML).join('\r\n');
 };
@@ -63,7 +57,6 @@ var bindEvents = function(){
 };
 
 var updateBoard = function(data){
-	if(data.isGameOver == true) window.location = 'gameOver.html';
 	var getRelativePlayer = function(step){
 		return playerTemplate(data.players[(data.location+step)%4]);
 	};
@@ -103,11 +96,12 @@ var logOut = function(){
 	window.location.assign("login.html");
 	
 }
-
 var checkGameStatus = function(){
 	$.getJSON('gameStatus',updateBoard)
 };
-
+var checkGameOver = function(){
+	$.getJSON('gameOver',finishGame);
+};
 var getBoardStatus = function(data){
 	var cards = JSON.parse(data);
 	if(cards.length==0){
@@ -122,6 +116,7 @@ var getBoardStatus = function(data){
 };
 var updateRound = function(){
 	$.get('boardStatus',getBoardStatus);
+	checkGameOver();
 };
 
 var timer = function(){
@@ -133,9 +128,6 @@ var timer = function(){
 };
 
 var onPageReady = function(){
-	if(document.cookie == ''){
-		window.location = "login.html";
-	};
 	$('.action').hide();
 	$.getJSON('gameStatus',function(data){
 		if(data.passed){
@@ -144,6 +136,11 @@ var onPageReady = function(){
 		}
 	});
 	gameStatusTime = timer();
+	$.getJSON('gameOver', function(data){
+		if(data.winner){
+			clearInterval(gameStatusTime);
+		}
+	})
 	$('#pass').click(passCards);
 };
 
