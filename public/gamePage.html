@@ -1,71 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Hearts</title>
-	<link rel="stylesheet" href="stylesheets/gamePage.css">
+    <meta charset="UTF-8">
+    <title>Hearts</title>
+    <link rel="stylesheet" href="stylesheets/gamePage.css">
 </head>
 <body>
-	<script type="text/javascript" src="javascript/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript" src="javascript/handlebars.min-v4.0.5.js"></script>
-	<script type="text/javascript" src="javascript/game.js"></script>
-	<header class="header">
-		<div class="logo">
-			<h2>
-				<div class="dropdown">
-					<button disabled class="red_heart">He<span class = "logo_heart">♥</span>rts</button>
-					<div class="dropdown-content">
-					  <a href="https://github.com/ranju30/Hearts.git" target="_blank"><img src="images/git.png" height="25px" width="25px" title="GitHub"></a>
-					  <a href="instruction.html" target="_blank"><img src="images/instruction.png" height="25px" width="25px" title="Instruction"></a>
-					  <a href="https://github.com/ranju30/Hearts/issues" target="_blank"><img src="images/issues.png" height="25px" width="25px" title="Issues"></a>
-					</div>
-				</div>
-			</h2>
-		</div>
-		<div class="image"><img src="images/logout.png" height="20px" width="20px" onclick="logOut()" title="Logout"></div>
-	</header>
-	<hr>
-	<div class="gamepage">
-		<div class="oppositePlayer">
-			<div class="name"></div>
-		</div>
-		<div class="totalPoint">
-			<table class="points">
-				<thead>
-					<tr>
-						<th>NAME</th>
-						<th>TOTAL</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="name1"></tr>
-					<tr class="name2"></tr>
-					<tr class="name3"></tr>
-					<tr class="name4"></tr>
-				</tbody>
-			</table>
-			
-		</div>
-			<div class="leftPlayer">
-				<div class="name"></div>
-			</div>
-			<div class="rightPlayer">
-				<div class="name"></div>
-			</div>
-		<div class="playedCardsBoard">
-			<div class="playedCards">
-				<div class="card0"></div>
-				<div class="card1"></div>
-				<div class="card2"></div>
-				<div class="card3"></div>
-			</div>
-		</div>
-		<div class="action"><input type="button" id="pass" value="Pass"></div>
-		<div class="status"></div>
-		<div class="playerSelf">
-			<div class="name"></div>
-			<table  class="hand"><tr></tr></table>
-		</div>
-	</div>
+<script type="text/javascript" src="javascript/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="javascript/handlebars.min-v4.0.5.js"></script>
+<script type="text/javascript" src="javascript/game.js"></script>
+<header class="header">
+    <div class="logo">
+        <h2>
+            <div class="dropdown">
+                <button disabled class="red_heart">He<span class="logo_heart">♥</span>rts</button>
+                <div class="dropdown-content">
+                    <a href="https://github.com/ranju30/Hearts.git" target="_blank"><img src="images/git.png"
+                                                                                         height="25px" width="25px"
+                                                                                         title="GitHub"></a>
+                    <a href="instruction.html" target="_blank"><img src="images/instruction.png" height="25px"
+                                                                    width="25px" title="Instruction"></a>
+                    <a href="https://github.com/ranju30/Hearts/issues" target="_blank"><img src="images/issues.png"
+                                                                                            height="25px" width="25px"
+                                                                                            title="Issues"></a>
+                </div>
+            </div>
+        </h2>
+    </div>
+    <div class="image"><img src="images/logout.png" height="20px" width="20px" onclick="logOut()" title="Logout"></div>
+</header>
+<hr>
+<div class="gamepage">
+    <div class="oppositePlayer">
+        <div class="name"></div>
+    </div>
+    <div class="totalPoint">
+        <table class="points">
+            <thead>
+            <tr>
+                <th>NAME</th>
+                <th>TOTAL</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="name1"></tr>
+            <tr class="name2"></tr>
+            <tr class="name3"></tr>
+            <tr class="name4"></tr>
+            </tbody>
+        </table>
+
+    </div>
+    <div class="leftPlayer">
+        <div class="name"></div>
+    </div>
+    <div class="rightPlayer">
+        <div class="name"></div>
+    </div>
+    <div class="playedCardsBoard">
+        <div class="playedCards">
+            <div class="card0"></div>
+            <div class="card1"></div>
+            <div class="card2"></div>
+            <div class="card3"></div>
+        </div>
+    </div>
+    <div class="action"><input type="button" id="pass" value="Pass"></div>
+    <div class="status"></div>
+    <div class="playerSelf">
+        <div class="name"></div>
+        <table class="hand">
+            <tr></tr>
+        </table>
+    </div>
+</div>
 </body>
 </html>

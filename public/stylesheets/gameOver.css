@@ -1,29 +1,29 @@
-h2{
-	text-align: center;
-	font-size: 3vw;
-	font-family: sans-serif;
-	margin:auto;
+h2 {
+    text-align: center;
+    font-size: 3vw;
+    font-family: sans-serif;
+    margin: auto;
 }
 
 .result {
-	color: black;
-	text-align: center;
-	position:absolute;
-	left: 43%;
-	top:43%;
-	text-transform: capitalize;
-	
-	font-size:2.5vw;
+    color: black;
+    text-align: center;
+    position: absolute;
+    left: 43%;
+    top: 43%;
+    text-transform: capitalize;
+
+    font-size: 2.5vw;
 }
 
 .red_heart_logo {
-	color: red;
+    color: red;
 }
 
 .image {
-	display: inline-block;
-	position: absolute;
-	right: 13%;
-	cursor: pointer;
-	margin: -2.5%;
+    display: inline-block;
+    position: absolute;
+    right: 13%;
+    cursor: pointer;
+    margin: -2.5%;
 }
