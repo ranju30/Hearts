@@ -24,7 +24,7 @@ var convertToValueObject = function(cardID){
 	return {suit:cardValue[0],rank:cardValue[1]};
 };
 var passCards = function(){
-	if($(".select").length == 3){
+	if($(".select").length === 3){
 		pass = true;
 		$(".action").hide();
 		var selectedCards = [];
@@ -41,11 +41,11 @@ var passCards = function(){
 
 var toggleSelection = function(){
 	$(this).toggleClass("select");
-	if($(".select").length==1){
+	if($(".select").length===1){
 		var selectedCard = convertToValueObject($(".select")[0].id);
 		$.post("startGame",selectedCard);
 	}
-	else if($(".select").length==3 && !pass){
+	else if($(".select").length===3 && !pass){
 		$(".action").show();
 	}
 	else{
@@ -64,7 +64,7 @@ var updateBoard = function(data){
 		return totalPointTemplate(data.players[(data.location+step)%4]);
 	};
 	$(".status").html(data.instruction);
-	if(data.players.length == 4){
+	if(data.players.length === 4){
 		$(".totalPoint .name1").html(getTotalPoints(0));
 		$(".totalPoint .name2").html(getTotalPoints(1));
 		$(".totalPoint .name3").html(getTotalPoints(2));
@@ -77,7 +77,7 @@ var updateBoard = function(data){
 	$(".rightPlayer .name").html(getRelativePlayer(3));
 	$(".playerSelf .hand").html(generateHand(data.hand));
 	bindEvents();
-	if(data.hand.length >= 13 && !data.players[data.location].pass && data.round%4 != 0){
+	if(data.hand.length >= 13 && !data.players[data.location].pass && data.round%4 !== 0){
 		pass = false;
 		clearInterval(gameStatusTime);
 	}
@@ -104,7 +104,7 @@ var checkGameOver = function(){
 };
 var getBoardStatus = function(data){
 	var cards = JSON.parse(data);
-	if(cards.length==0){
+	if(cards.length===0){
 		for(var i = 0;i<4;i++){
 			$(".card"+i).empty();
 		}
